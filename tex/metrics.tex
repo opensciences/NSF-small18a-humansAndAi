@@ -1,0 +1,45 @@
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[!t]
+\scriptsize
+\centering
+\resizebox{.9\linewidth}{!}{
+\begin{tabular}{l|ll}
+\hline
+\textbf{ENTITIES} & \multicolumn{2}{c}{\textbf{ATTRIBUTES}} \\  
+\textit{\textbf{Products}} & \multicolumn{1}{c}{\textit{\textbf{Internal}}} & \multicolumn{1}{c}{\textit{\textbf{External}}} \\ \hline
+\multirow{2}{*}{Specifications} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}size, reuse, modularity, redundancy, \\ functionality, syntactic correctness, \dots\end{tabular}} & \multirow{2}{*}{comprehensibility, maintainability, \dots} \\
+ &  &  \\
+\multirow{2}{*}{Designs} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}size, reuse, modularity, coupling, \\ cohesiveness, inheritance, functionality, \dots\end{tabular}} & \multirow{2}{*}{quality, complexity, maintainability, \dots} \\
+ &  &  \\
+\multirow{2}{*}{Code} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}CK metrics, McCabe metrics, Halstead metrics,  \\ functionality, algorithmic complexity,,control-flow structuredness, \dots\end{tabular}} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}reliability, usability, maintainability, \\ reusability\end{tabular}} \\
+ &  &  \\
+Test Data & size, coverage level, \dots & quality, reusability, \dots \\
+\dots & \dots & \dots \\  
+\textit{\textbf{Processes}} &  &  \\ \hline
+\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Construction\\ specification\end{tabular}} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}time, effort, \#requirement changes, \\ \dots\end{tabular}} & \multirow{2}{*}{quality, cost, stability, \dots} \\
+ &  &  \\
+\multirow{2}{*}{Detailed design} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}time, effort, number of specification faults\\ found, \dots\end{tabular}} & \multirow{2}{*}{cost, cost-effectiveness, \dots} \\
+
+
+ &  &  \\
+Testing & time, effort, number of coding faults found, \dots & cost, cost-effectiveness, stability, \dots \\
+Maintenance & \#bug reports, \#maintenance requests, \#enhancement requests,\ldots & extensibleness\dots\\
+            & \#issues open, \#issues closes, \#issue close time  \dots &   maintainability \dots \\
+\dots & \dots & \dots \\  
+\textit{\textbf{Resources}} &  &  \\ \hline
+%Personnel & age, price, \dots & productivity, experience, intelligence, \dots \\
+Teams & size, communication level, structuredness, \dots & productivity, quality, \dots \\
+Organizations & size, pace of personnel change %ISO Certification, CMM level 
+& Maturity, profitability, \dots \\
+Software &   size, \dots & usability, reliability, \dots \\
+%Hardware & price, speed, memory size, \dots & reliability, \dots \\
+%Office & size, temperature, light, \dots & comfort, quality, \dots \\
+\dots & \dots & \dots \\ 
+\end{tabular}}
+\caption{Some of the attributes we can access via mining of Github repositories and their associated tool chains.
+Following  Fenton's~\cite{Fe14} guidance,  attributes are divided into product, process, and resource. Also, {\em internal}
+metrics can be measured directly and {\em external} ones
+represent the indirect external manifestations of the internal ones.  }
+\label{tab:metrics}
+\end{table}

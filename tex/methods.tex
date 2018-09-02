@@ -1,0 +1,20 @@
+\begin{table}[htbp!]
+\footnotesize
+\centering
+\begin{tabular}{|p{\linewidth}|}
+\hline
+\bi
+  \item \textbf{Formal method tools}  such as the SPIN~\cite{Ho11} model checker deploy automatic tools that are guided  quantified formulae which can succinctly express the correct, or incorrect, behavior of a large class of error;
+  
+  \item \textbf{Static code analyzers} such as Findbugs~\cite{Ay10} scan code looking for issues that might cause defective behavior such as possible logic errors that could lead to null pointer dereferences, bad casts, infinite recursive loops and other problems.  These tools suffer from large false positive reports. 
+  
+  \item Visser~\cite{Vis14} celebrates recent triumphs in optimizing SAT solvers and their applications to SE quality assurance.  Visser  also warns that automatic tools like SAT solvers are ``blackbox'' and software engineers need to look under the hood to make use of some of the internal results. Further, much work remains in order to fine-tuning such general tools to the specifics of any particular problem.
+
+  \item Researchers in software analytics apply data mining algorithms to  build defect predictors using product attributes~\cite{Ha12} or process attributes~\cite{Ra13} extracted from software code. Foyzur et al. report that the data mining approach can be just as other methods such as effective static code analyzers~\cite{Fa13}.
+
+\ei \\[-0.2cm]
+Much prior work has explored the relative cost/benefits of using one or more of the above. For example,   Lowry warns that model checkers have severe scalability problems~\cite{Lo98}.  Also,~\cite{Ow07} comments that   conjunctions of these methods may find more bugs that any single one, but it is hard to predict before hand which, if any, of these methods finds most bugs.  Foyzur et al.~\cite{Fa13} notes that these, these defect prediction methods have fewer bindings to specific languages. This means that (e.g.) when a new version of C\# is realized, vendors of static code analyzers must scramble to adapt their tool to the nuances of the new language. Meanwhile, users of defect predictors can quickly build (in just a few hours) the lightweight parsers required to extract features from the new language.  \\ \hline
+\end{tabular}
+\caption{\textbf{Automatic methods for addressing code quality.} Since our goal is to monitor thousands of projects implemented in, potentially, dozens of languages, and since Foyzur et al. report that this method is as effective as more complex ones,  this research will take the data mining approach.}
+\label{tab:methods}
+\end{table}

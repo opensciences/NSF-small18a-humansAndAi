@@ -1,0 +1,20 @@
+\begin{wraptable}[13]{r!}{0.6\textwidth}
+\footnotesize
+\centering
+\caption{Sanity checks. Starting with 1108+538  open source+in-house projects, we discard  projects that {\em fail}
+any of the LHS tests to arrive at 661+171 projects.}\label{tab:sanity}
+\begin{tabular}{|l|r|r|}
+\hline
+Sanity check & \multicolumn{2}{c|}{\#discarded projects}                     \\ \cline{2-3} 
+\multicolumn{1}{|c|}{(discard projects that violate these tests) }                              & \multicolumn{1}{l|}{In-house} & \multicolumn{1}{l|}{Open-source} \\ \hline
+\# Pulls \textgreater 0                             & 35                            & 54                              \\
+\# Issues \textgreater 10                            & 60                            & 89                              \\
+\# Commits \textgreater 20                          & 68                            & 96                              \\
+\# Developers \textgreater 8                        & 47                            & 67                              \\
+\# Releases \textgreater 0                          & 136                           & 44                              \\
+Project time frame \textgreater 1 year              & 12                            & 46                              \\
+Projects doing only software development            & 9                             & 51                              \\ \hline
+%Total Projects                                      & 538                           & 1108                            \\
+Surviving projects                                  & 171                           & 661                             \\ \hline
+\end{tabular}
+\end{wraptable}

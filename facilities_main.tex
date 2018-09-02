@@ -1,0 +1,145 @@
+\documentclass[11pt,letterpaper]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{plain}                                                      %%
+%%%%%%%%%% EXACT 1in MARGINS %%%%%%%                                   %%
+\setlength{\textwidth}{6.5in}     %%                                   %%
+\setlength{\oddsidemargin}{0in}   %% (It is recommended that you       %%
+\setlength{\evensidemargin}{0in}  %%  not change these parameters,     %%
+\setlength{\textheight}{8.5in}    %%  at the risk of having your       %%
+\setlength{\topmargin}{0in}       %%  proposal dismissed on the basis  %%
+\setlength{\headheight}{0in}      %%  of incorrect formatting!!!)      %%
+\setlength{\headsep}{0in}         %%                                   %%
+\setlength{\footskip}{.5in}       %%                                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                   %%
+\newcommand{\required}[1]{\section*{\hfil #1\hfil}}                    %%
+\renewcommand{\refname}{\hfil References Cited\hfil}                   %%
+\bibliographystyle{unsrt}                                              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage[square, comma, sort&compress]{natbib}
+
+\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
+\def\abovecaptionskip{1mm} 
+\usepackage[margin=1in]{geometry}
+\usepackage{url}
+\usepackage{alltt}
+
+\usepackage{cite}
+\usepackage{bigstrut}
+\usepackage{textcomp}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{subfigure}
+\usepackage{wrapfig}
+\usepackage{hhline}
+\usepackage{epsf}
+\usepackage{nameref}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{subfigure}
+\usepackage{wrapfig}
+\usepackage{times}
+\usepackage{tabularx}
+\usepackage{ifthen}
+\usepackage{xspace}
+\usepackage[usenames]{color}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{wasysym}
+\usepackage{pdfpages}
+\def\naive{na\"{\i}ve}
+\def\Naive{Na\"{\i}ve}
+\def\naively{na\"{\i}vely}	% Okay, I know, this isn't French.
+\def\Naively{Na\"{\i}vely}
+\usepackage[compact]{titlesec}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[table]{xcolor}
+\newcommand{\TODO}[1]{{\it \color{blue}\{TODO: #1\}}}
+
+\usepackage{titlesec}
+
+\urlstyle{same}
+
+%list margin
+\usepackage{enumitem}
+\usepackage{makecell}
+
+\graphicspath{{figures/}}
+\DeclareGraphicsExtensions{.pdf, .png, .ps}
+
+\newboolean{hidecomments}
+\setboolean{hidecomments}{true}
+\ifthenelse{\boolean{hidecomments}}
+{\newcommand{\nb}[2]{}}
+{\newcommand{\nb}[2]{
+    \fbox{\bfseries\sffamily\scriptsize#1}
+    {\sf\small$\blacktriangleright$
+      {#2} $\blacktriangleleft$}}}
+    
+\newcommand\emh[1]{\nb{EMH}{#1}}
+\newcommand\myTitle{\newpage
+\begin{center}
+{\bf NSF SHF:Medium: Better Software Analytics by Combining Human and Artificial Intelligence}\\
+Tim Menzies (North Carolina State University)
+\end{center}}
+
+\usepackage{tikz}
+%\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+ %           \node[shape=circle,fille=.,draw,inner sep=2pt] (char) {\color{-.} \bfseries\footnotesize#1};}}
+
+ 
+\newcommand{\circled}[1]{\tikz[baseline=(myanchor.base)] \node[circle,fill=.,inner sep=1pt] (myanchor) {\color{-.}\footnotesize #1};}
+
+
+\usepackage{enumitem}
+\setlist{nosep}
+\usepackage{todonotes}
+
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+
+\newcommand{\tion}[1]{\S\ref{sec:#1}}
+\newcommand{\tab}[1]{Table~\ref{tab:#1}}
+\newcommand{\fig}[1]{Figure~\ref{fig:#1}}
+\newcommand{\eq}[1]{Equation~\ref{eq:#1}}
+
+%\newcommand{\THAT}[0]{ISOP}
+\newcommand{\THAT}[0]{ISOP}
+\newcommand{\THIS}[0]{\mbox{this proposal}}
+
+\usepackage{titlesec}
+
+
+\titlespacing*{\section}
+{0pt}{0ex}{0ex}
+\titlespacing*{\subsection}
+              {0pt}{0pt}{0pt}
+\titlespacing{\paragraph}{0pt}{3pt}{1em}
+              
+\newcommand{\quart}[4]{\begin{picture}(80,4)%1
+	{\color{black}\put(#3,2){\circle*{4}}\put(#1,2){\line(1,0){#2}}}\end{picture}}
+
+
+\pagenumbering{arabic}
+\renewcommand{\thepage} {D--\arabic{page}}
+
+\begin{document}
+\pagestyle{plain}
+% \myTitle
+%\pagenumbering{arabic}
+%\renewcommand{\thepage} {A--\arabic{page}}
+
+% \input{body.tex}
+\newcommand\paraHead[1]{\noindent\textbf{#1}}
+\newcommand\head[1]{\paragraph{\underline{#1}}} 
+\head{Facilities, Equipment, and Other Resources:}
+\input{facilities}
+
+\newpage
+% \bibliographystyle{unsrt}
+% \bibliography{references.bib}
+
+\end{document}

@@ -1,0 +1,192 @@
+\documentclass[11pt,letterpaper]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{plain}                                                      %%
+%%%%%%%%%% EXACT 1in MARGINS %%%%%%%                                   %%
+\setlength{\textwidth}{6.5in}     %%                                   %%
+\setlength{\oddsidemargin}{0in}   %% (It is recommended that you       %%
+\setlength{\evensidemargin}{0in}  %%  not change these parameters,     %%
+\setlength{\textheight}{8.5in}    %%  at the risk of having your       %%
+\setlength{\topmargin}{0in}       %%  proposal dismissed on the basis  %%
+\setlength{\headheight}{0in}      %%  of incorrect formatting!!!)      %%
+\setlength{\headsep}{0in}         %%                                   %%
+\setlength{\footskip}{.5in}       %%                                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                   %%
+\newcommand{\required}[1]{\section*{\hfil #1\hfil}}                    %%
+\renewcommand{\refname}{\hfil References Cited\hfil}                   %%
+\bibliographystyle{unsrt}                                              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage[square, comma, sort&compress]{natbib}
+
+\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
+\def\abovecaptionskip{1mm} 
+\usepackage[margin=1in]{geometry}
+\usepackage{url}
+\usepackage{alltt}
+
+\usepackage{cite}
+\usepackage{bigstrut}
+\usepackage{textcomp}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{subfigure}
+\usepackage{wrapfig}
+\usepackage{hhline}
+\usepackage{epsf}
+\usepackage{nameref}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{subfigure}
+\usepackage{wrapfig}
+\usepackage{times}
+\usepackage{tabularx}
+\usepackage{ifthen}
+\usepackage{xspace}
+\usepackage[usenames]{color}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{wasysym}
+\usepackage{pdfpages}
+\def\naive{na\"{\i}ve}
+\def\Naive{Na\"{\i}ve}
+\def\naively{na\"{\i}vely}	% Okay, I know, this isn't French.
+\def\Naively{Na\"{\i}vely}
+\usepackage[compact]{titlesec}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[table]{xcolor}
+\newcommand{\TODO}[1]{{\it \color{blue}\{TODO: #1\}}}
+
+\usepackage{titlesec}
+
+\urlstyle{same}
+
+%list margin
+\usepackage{enumitem}
+\usepackage{makecell}
+
+\graphicspath{{figures/}}
+\DeclareGraphicsExtensions{.pdf, .png, .ps}
+
+\newboolean{hidecomments}
+\setboolean{hidecomments}{true}
+\ifthenelse{\boolean{hidecomments}}
+{\newcommand{\nb}[2]{}}
+{\newcommand{\nb}[2]{
+    \fbox{\bfseries\sffamily\scriptsize#1}
+    {\sf\small$\blacktriangleright$
+      {#2} $\blacktriangleleft$}}}
+    
+\newcommand\emh[1]{\nb{EMH}{#1}}
+\newcommand\myTitle{\newpage
+\begin{center}
+{\bf SHF:Medium: Better Software Analytics by Combining Human and Artificial Intelligence}\\
+Tim Menzies (North Carolina State University)
+\end{center}}
+
+\usepackage{tikz}
+%\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+ %           \node[shape=circle,fille=.,draw,inner sep=2pt] (char) {\color{-.} \bfseries\footnotesize#1};}}
+
+
+\definecolor{darkgray}{gray}{0.8}
+\newcommand{\circled}[1]{\tikz[baseline=(myanchor.base)] \node[circle,fill=darkgray,inner sep=1pt] (myanchor) {\color{.}\footnotesize \textbf{#1}};}
+
+
+\usepackage{enumitem}
+\setlist{nosep}
+\usepackage{todonotes}
+
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+
+\newcommand{\tion}[1]{\S\ref{sec:#1}}
+\newcommand{\tab}[1]{Table~\ref{tab:#1}}
+\newcommand{\fig}[1]{Figure~\ref{fig:#1}}
+\newcommand{\eq}[1]{Equation~\ref{eq:#1}}
+
+%\newcommand{\THAT}[0]{ISOP}
+\newcommand{\THAT}[0]{ISOP}
+\newcommand{\THIS}[0]{\mbox{this proposal}}
+% paraHead
+\newcommand\paraHead[1]{\noindent\textbf{#1}}
+\newcommand\head[1]{\paragraph{\underline{#1}}} 
+\usepackage{titlesec}
+
+
+\titlespacing*{\section}
+{0pt}{0ex}{0ex}
+\titlespacing*{\subsection}
+              {0pt}{0pt}{0pt}
+\titlespacing{\paragraph}{0pt}{3pt}{1em}
+              
+\newcommand{\quart}[4]{\begin{picture}(80,4)%1
+	{\color{black}\put(#3,2){\circle*{4}}\put(#1,2){\line(1,0){#2}}}\end{picture}}
+
+
+\pagenumbering{arabic}
+
+
+\pagenumbering{arabic} 
+
+\begin{document}
+\pagestyle{plain}
+\myTitle
+%\pagenumbering{arabic}
+\pagestyle{empty}
+
+\head{Overview:}
+
+Software analytics is a workflow that distills large amounts of low-value data into small chunks of very high-value data. 
+A challenging problem with modern software analytics is the pace of change in software.  Numerous results  show that many prior beliefs about SE must now be revised due to the ever-changing nature of the tools, techniques, practices, and SE practitioners.  Accordingly, this research aims to enable better software analytics
+via a unique combination of human and artificial intelligence. This unique combination will be applied on wide-range of analytics tasks such as (a) predicting the time required to close issues; (b) predicting how many developers should be assigned to a software task; (c) predicting the locations of bug in software; (d)  planners for recommending methods to change all the above (which would be used if managers do not like the predicted values). 
+
+These methods will be tested on the hundreds  of software projects monitored inside a cloud platform at the Raleigh Research Triangle,  North Carolina.  This platform is an integrated DevOps tool that builds, runs, deploys, and manages applications to support several programming languages including Java, Node.js, Go, PHP, Swift, Python, Ruby Sinatra, Ruby on Rails. At the time of this writing,this platform presents data from over 1600 live projects and has over 1.6 million users (around the world).
+The dashboards of this platform generate thousands of conclusions per day about all those projects.
+Given all the developers reflecting on all those conclusions, there is a tremendous opportunity here to research methods for combining all that insight into better and actionable models of software quality (hence this research).
+
+Using  our new methods plus feedback from the developer community with this cloud platform, the research  will ask and answer the question:
+\begin{center}
+ {\em RQ1:  Are human-augmented data miners ``better'' for software  analytics?}
+\end{center}
+Where ``better'' is determined via a comparison with state of the art alternate methods.
+\head{Intellectual Merit:} Within all the current industrial focus on industrial big data methods, there is very
+little discussion on the value (or otherwise) of human insight. Here, we push back somewhat on that trend and ask what happens when a large
+community of developers can critique the results from a big data mining tool.
+If it could be shown  that (a)~combinations of human and artificial intelligence leads to useful insight; and (b)~that combination scales to cloud-scale
+data collection from thousands of projects, then that would lead to a new generation of human+artificial intelligence methods.
+ 
+
+\head{Broader Impacts:}
+This proposal focuses on issues of
+tremendous economic importance--  the creation of better quality software.
+As a result, this work will increase America's ability for industrial and academic innovators to conduct
+more scientific studies via computational means.  
+ 
+
+ The PI teaches senior-level and graduate-level SE, and data mining classes (and in those data mining classes, all the case studies come from software engineering).  All of the technology developed in this proposal will become case study material for those subjects.   The PI will continue his established tradition of graduating  research  students  for  historically  under-represented  groups.   Also, this work will inform the curriculum of the PI's annual
+   NSF-funded REU (research experience for undergraduates) work on  the ``Science of Software''
+   (in  this program, places are reserved for students from traditionally under-represented areas; e.g.  economically challenged regions of the state of North Carolina) and/or students from universities lacking advanced research facilities). While some of the concepts of this grant would be too advanced for that group, some of the simpler data mining concepts would be suitable for lectures and REU projects.
+
+
+\head{Keywords:} software analytics,  human insight, planning, prediction
+\newpage
+\pagestyle{plain}
+
+\setcounter{page}{1}
+\renewcommand{\thepage} {D--\arabic{page}}
+\myTitle
+
+\input{body.tex}
+
+\newpage
+\head{Facilities, Equipment, and Other Resources:}
+\input{facilities}
+
+\newpage
+\bibliographystyle{unsrt}
+\bibliography{references.bib}
+
+\end{document}

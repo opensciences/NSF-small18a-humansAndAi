@@ -1,0 +1,55 @@
+\begin{figure}[htb!]
+\scriptsize
+\centering
+\begin{tabular}{|p{0.95\linewidth}|} \hline
+\begin{minipage}{.45\linewidth}
+\small
+
+{\bf \fig{crosstree}.A: Decision trees: Top-down division }
+
+Find a split in the values of independent features (OO metrics) that most reduces the variability
+of the some quality  feature. F this example, we will use ``defect counts'' but it could also be ``time to close this issue'' or ``presence of bad smell'' or many other software quality factors. For continuous and discrete values,
+the {\em variability} can be measured using standard deviation $\sigma$ or entropy $e$ respectively. Construct a standard decision tree using these splits.
+\\[-0.15cm]
+~\hrule~
+\\
+{\bf \fig{crosstree}.B: Finding the most informative nodes}
+
+Discretize all numeric features using the Fayyad-Iranni discretizer~\cite{fi}
+(divide numeric columns into bins $B_i$, each of which  select for the fewest cluster ids).
+Let feature $F$ have bins $B_i$, each of which contains $n_i$ rows
+and 
+let each bin $B_i$ have entropy $e_i$ computed from the frequency of clusters seen in that bin.
+Cull the the features as per~\cite{papa13}; i.e. just use the $\beta=33\%$ most informative features
+where  the   value of  feature $F$ is $\sum_i e_i\frac{n_i}{N}$ ($N$ is the number of rows).\\[-0.1cm]
+
+
+%   ~\hrule~
+
+
+% \end{shaded}
+\end{minipage}~~~~~\begin{minipage}{.525\linewidth}
+% ~\hrule~
+
+\textbf{\fig{crosstree}.D: A sample decision tree.\\}
+\includegraphics[width=\linewidth]{figs/XTREE_samp.eps}
+% ~\hrule~
+\end{minipage}\bigstrut\\\hline
+\\[-0.2cm]
+\begin{minipage}{\linewidth}
+\small
+% \begin{shaded}  	   
+
+
+{\bf \fig{crosstree}.C: Using CrossTree} Using training data and Algorithm \fig{crosstree}.A , build a tree and divide the data into $\alpha=\sqrt{N}$ leaves.
+For test item, 
+	  find its {\em current } leaf and  {\em desired} leaf (where ``desired'' means ``nearby'' ``better software quality''. For example, in the decision tree
+	  at right, some test item has falled down to the orange ``current'' branch where the probability of defects is 1.0. Meanwile, nearby, there is 
+	  
+	 Return a plan to improve software quality as the  {\em delta} between {\em current} and {\em 
+	 desired} branch. 
+% \end{shaded}
+\end{minipage}\\\hline
+\end{tabular}
+\caption{Generating recommendations on how to improve a project using CrossTREEs.}\label{fig:crosstree}
+\end{figure}
