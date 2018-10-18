@@ -80,7 +80,7 @@
 \newcommand\emh[1]{\nb{EMH}{#1}}
 \newcommand\myTitle{\newpage
 \begin{center}
-{\bf SHF:Medium: Better Software Analytics by Combining Human and Artificial Intelligence}\\
+{\bf SHF:Small: Mega-Transfer: Learning from 10,000+ Software Projects}\\
 Tim Menzies (North Carolina State University)
 \end{center}}
 
@@ -88,10 +88,12 @@ Tim Menzies (North Carolina State University)
 %\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
  %           \node[shape=circle,fille=.,draw,inner sep=2pt] (char) {\color{-.} \bfseries\footnotesize#1};}}
 
-
+\definecolor{Gray}{gray}{0.9}
 \definecolor{darkgray}{gray}{0.8}
 \newcommand{\circled}[1]{\tikz[baseline=(myanchor.base)] \node[circle,fill=darkgray,inner sep=1pt] (myanchor) {\color{.}\footnotesize \textbf{#1}};}
 
+\usepackage{bbding}
+\definecolor{lgray}{gray}{0.9}
 
 \usepackage{enumitem}
 \setlist{nosep}
@@ -104,6 +106,8 @@ Tim Menzies (North Carolina State University)
 
 \newcommand{\tion}[1]{\S\ref{sec:#1}}
 \newcommand{\tab}[1]{Table~\ref{tab:#1}}
+
+\newcommand{\tbl}[1]{Table~\ref{tbl:#1}}
 \newcommand{\fig}[1]{Figure~\ref{fig:#1}}
 \newcommand{\eq}[1]{Equation~\ref{eq:#1}}
 
@@ -124,12 +128,17 @@ Tim Menzies (North Carolina State University)
               
 \newcommand{\quart}[4]{\begin{picture}(80,4)%1
 	{\color{black}\put(#3,2){\circle*{4}}\put(#1,2){\line(1,0){#2}}}\end{picture}}
+\usepackage[font=small,format=plain,labelfont=bf,textfont=it]{caption}
 
-
+\usepackage{xcolor}
 \pagenumbering{arabic}
+\usepackage{enumitem}
+\setlist{nosep}
 
 
 \pagenumbering{arabic} 
+
+\usepackage{pifont} 
 
 \begin{document}
 \pagestyle{plain}
@@ -138,25 +147,38 @@ Tim Menzies (North Carolina State University)
 \pagestyle{empty}
 
 \head{Overview:}
-
 Software analytics is a workflow that distills large amounts of low-value data into small chunks of very high-value data. 
-A challenging problem with modern software analytics is the pace of change in software.  Numerous results  show that many prior beliefs about SE must now be revised due to the ever-changing nature of the tools, techniques, practices, and SE practitioners.  Accordingly, this research aims to enable better software analytics
-via a unique combination of human and artificial intelligence. This unique combination will be applied on wide-range of analytics tasks such as (a) predicting the time required to close issues; (b) predicting how many developers should be assigned to a software task; (c) predicting the locations of bug in software; (d)  planners for recommending methods to change all the above (which would be used if managers do not like the predicted values). 
+What are the implications of big data for software analytics? Currently, researchers have ready access to 10,000+ projects. 
+Using all that data, can we learn better models for software quality?  Or is learning from so much big data in software engineering inherently so confusing that no general models can be found?
+Currently, there are no answers to these questions in the field of software engineering.  The experience in other fields is that the
+{\em more} training data,  the {\em better} the learned model. This effect has yet to be seen in software engineering,
+but that might just mean we have yet to use enough training data (hence, this proposal).
 
-These methods will be tested on the hundreds  of software projects monitored inside a cloud platform at the Raleigh Research Triangle,  North Carolina.  This platform is an integrated DevOps tool that builds, runs, deploys, and manages applications to support several programming languages including Java, Node.js, Go, PHP, Swift, Python, Ruby Sinatra, Ruby on Rails. At the time of this writing,this platform presents data from over 1600 live projects and has over 1.6 million users (around the world).
-The dashboards of this platform generate thousands of conclusions per day about all those projects.
-Given all the developers reflecting on all those conclusions, there is a tremendous opportunity here to research methods for combining all that insight into better and actionable models of software quality (hence this research).
+In this research, we will test for   better software analytics
+via ``mega-transfer''; i.e. searching  10,000+ software projects for lessons learned that are relevant to particular projects.
+Mega-transfer will  be tested on 10,000+  of software projects monitored inside public code repositories (e.g. Github) and commercial cloud platform 
+like those run in  the Raleigh Research Triangle,  North Carolina.  
+That cloud-based DevOps tool build, runs, and deploys, code written in Java, Node.js, Go, PHP, Swift, Python, Ruby Sinatra,Ruby on Rails (and is extensible to other languages). It is is used regularly by 100,000+ developers working on 1600 live projects.
 
-Using  our new methods plus feedback from the developer community with this cloud platform, the research  will ask and answer the question:
+
+The research  will ask and answer the question:
 \begin{center}
- {\em RQ1:  Are human-augmented data miners ``better'' for software  analytics?}
+{\em Can mega-transfer learning  between 10,000+ project generate better, more insightful, models?}
 \end{center}
-Where ``better'' is determined via a comparison with state of the art alternate methods.
-\head{Intellectual Merit:} Within all the current industrial focus on industrial big data methods, there is very
-little discussion on the value (or otherwise) of human insight. Here, we push back somewhat on that trend and ask what happens when a large
-community of developers can critique the results from a big data mining tool.
-If it could be shown  that (a)~combinations of human and artificial intelligence leads to useful insight; and (b)~that combination scales to cloud-scale
-data collection from thousands of projects, then that would lead to a new generation of human+artificial intelligence methods.
+ 
+In order to demonstrate the external validity of our methods, we will watch for new releases of the projects we are studying. When such new releases occur, we will apply our current models to those new releases. This will demonstrate the value (or otherwise) of our models on new data.
+
+
+\head{Intellectual Merit:} 
+  In this era of big data, it is timely to ask ``when is enough data, enough?''.
+Within all the current industrial focus on industrial big data methods, there is very
+little discussion on the value (or otherwise) of using all the available data.
+Given the diversity of software projects, accessing more data means accessing data from a diverse range of different projects. 
+That is, there might be limits to the big data advantage in SE since,  as we look at more and more data, we are not sampling more items from the {\em same } population. This might mean that software analytics needs to set limits on how much data it uses to make conclusions.
+
+
+More generally, we ask are there general models of SE that apply to a wide range of projects? Or should all projects be treated as unique entities
+that require unique treatments? Note that the latter conclusion would imply a limit to theory development in software engineering.
  
 
 \head{Broader Impacts:}
@@ -171,7 +193,7 @@ more scientific studies via computational means.
    (in  this program, places are reserved for students from traditionally under-represented areas; e.g.  economically challenged regions of the state of North Carolina) and/or students from universities lacking advanced research facilities). While some of the concepts of this grant would be too advanced for that group, some of the simpler data mining concepts would be suitable for lectures and REU projects.
 
 
-\head{Keywords:} software analytics,  human insight, planning, prediction
+\head{Keywords:} software analytics, transfer learning,  prediction
 \newpage
 \pagestyle{plain}
 
@@ -187,6 +209,6 @@ more scientific studies via computational means.
 
 \newpage
 \bibliographystyle{unsrt}
-\bibliography{references.bib}
+\bibliography{references,refs-rahul}
 
 \end{document}

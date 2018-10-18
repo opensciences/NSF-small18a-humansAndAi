@@ -1,0 +1,65 @@
+\begin{wraptable}{r}{3in}
+\renewcommand{\baselinestretch}{.65} 
+\scriptsize
+\begin{tabular}{c@{~}c|c@{~}c@{~}c|c@{~}c@{~}c}
+\multicolumn{2}{l|}{}            
+ & \multicolumn{3}{c|}{ } & \multicolumn{3}{c}{Round Robin} \\
+ & Days to& \multicolumn{3}{c|}{  Local learning} & \multicolumn{3}{c}{ (cross-project)} \\
+Dataset                       & \begin{tabular}[c]{@{}c@{}}close\\ issues\end{tabular} & {\em precision}    & {\em recall}    & {\em pf}    & {\em precision}     & {\em recall}     & {\em pf}    \\ \hline
+% \multirow{5}{*}{camel}        & 1                                                    & 65        & 40      & 4      & 56         & \cellcolor[gray]{0.8}{23}       & 3       \\ \cline{2-2}
+%                               & 7                                                    & 74        & 70      & 7      & 66         & 70       & 12      \\ \cline{2-2}
+%                               & 14                                                   & 73        & 78      & 10      & 74         & 70       & 11      \\ \cline{2-2}
+%                               & 30                                                   & 82        & 80      & 7      & 77         & 74       & 12      \\ \cline{2-2}
+%                               & 90                                                   & 89        & 70      & 5      & 77         & 81       & 21      \\ \hline
+  % & 1                                                    & 66        & 60      & 24      & 57         & \cellcolor[gray]{0.8}{18}       & 2       
+%\\ \cline{2-2}
+  \multirow{4}{*}{cloudstack}                            & 7                                                    & 76        & 93      & \cellcolor[gray]{0.8}{77}      & 65         & 66       & 11      \\ \cline{2-2}
+                              & 14                                                   & 81        & 96      & \cellcolor[gray]{0.8}{83}      & 70         & 71       & 11      \\ \cline{2-2}
+                              & 30                                                   & 85        & 100     & \cellcolor[gray]{0.8}{100}       & 78         & 65       & 9       \\ \cline{2-2}
+                              & 90                                                   & 94        & 100     & \cellcolor[gray]{0.8}{100}       & 74         & 75       & 20      \\ \hline
+%\multirow{5}{*}{cocoon}       & 1                                                    & \cellcolor[gray]{0.8}{0}         & \cellcolor[gray]{0.8}{0}       & 0       & 60         & \cellcolor[gray]{0.8}{17}       & 2       \\ \cline{2-2}
+ \multirow{4}{*}{cocoon}                             & 7                                                    & \cellcolor[gray]{0.8}{0}         & \cellcolor[gray]{0.8}{0}       & 0       & 66         & 68       & 13      \\ \cline{2-2}
+                              & 14                                                   & \cellcolor[gray]{0.8}{0}         & \cellcolor[gray]{0.8}{0}       & 0       & 71         & 75       & 13      \\ \cline{2-2}
+                              & 30                                                   & 53        & 96      & 14      & 77         & 71       & 11      \\ \cline{2-2}
+                              & 90                                                   & 67        & 95      & 11      & 82         & 64       & 12      \\ \hline
+%\multirow{5}{*}{deeplearning} & 1                                                    & 78        & 77      & \cellcolor[gray]{0.8}{41}      & 51         & \cellcolor[gray]{0.8}{17}       & 3       \\ \cline{2-2}
+% \multirow{4}{*}{deeplearning}                              & 7                                                    & 80        & 100     & \cellcolor[gray]{0.8}{100}       & 65         & 66       & 11      \\ \cline{2-2}
+%                               & 14                                                   & 86        & 100     & \cellcolor[gray]{0.8}{100}       & 70         & 73       & 12      \\ \cline{2-2}
+%                               & 30                                                   & 91        & 100     & \cellcolor[gray]{0.8}{100}       & 77         & 67       & 10      \\ \cline{2-2}
+%                               & 90                                                   & 96        & 100     & \cellcolor[gray]{0.8}{100}       & 76         & 77       & 19      \\ \hline
+% %\multirow{5}{*}{hadoop}       & 1                                                    & \cellcolor[gray]{0.8}{0}         & \cellcolor[gray]{0.8}{0}       & 0       & 57         & \cellcolor[gray]{0.8}{22}       & 4       \\ \cline{2-2}
+\multirow{4}{*}{hadoop}                              & 7                                                    & \cellcolor[gray]{0.8}{0}         & \cellcolor[gray]{0.8}{0}       & 0       & 66         & 70       & 18      \\ \cline{2-2}
+                              & 14                                                   & \cellcolor[gray]{0.8}{0}         & \cellcolor[gray]{0.8}{0}       & 0       & 70         & 81       & 22      \\ \cline{2-2}
+                              & 30                                                   & \cellcolor[gray]{0.8}{0}         & \cellcolor[gray]{0.8}{0}       & 0       & 76         & 80       & 20      \\ \cline{2-2}
+                              & 90                                                   & \cellcolor[gray]{0.8}{32}        & \cellcolor[gray]{0.8}{2}      & 0       & 80         & 83       & 24      \\ \hline
+% \multirow{5}{*}{hive}         & 1                                                    & \cellcolor[gray]{0.8}{0}         & \cellcolor[gray]{0.8}{0}       & 0       & 61         & \cellcolor[gray]{0.8}{15}       & 2       \\ \cline{2-2}
+%                               & 7                                                    & \cellcolor[gray]{0.8}{0}         & \cellcolor[gray]{0.8}{0}       & 0       & 68         & 67       & 13      \\ \cline{2-2}
+%                               & 14                                                   & 52        & 35      & 1       & 73         & 71       & 13      \\ \cline{2-2}
+%                               & 30                                                   & \cellcolor[gray]{0.8}{0}         & \cellcolor[gray]{0.8}{0}       & 0       & 80         & 69       & 10      \\ \cline{2-2}
+%                               & 90                                                   & 62        & 53      & 9       & 81         & 76       & 16      \\ \hline
+% \multirow{5}{*}{kafka}        & 1                                                    & 63        & 48      & 17      & 58         & \cellcolor[gray]{0.8}{16}       & 2       \\ \cline{2-2}
+%                               & 7                                                    & 78        & 83      & \cellcolor[gray]{0.8}{43}      & 65         & 66       & 11      \\ \cline{2-2}
+%                               & 14                                                   & 81        & 90      & \cellcolor[gray]{0.8}{56}      & 69         & 73       & 12      \\ \cline{2-2}
+%                               & 30                                                   & 83        & 97      & \cellcolor[gray]{0.8}{76}      & 76         & 69       & 10      \\ \cline{2-2}
+%                               & 90                                                   & 91        & 98      & \cellcolor[gray]{0.8}{71}      & 81         & 62       & 11      \\ \hline
+% \multirow{5}{*}{node}         & 1                                                    & 56        & \cellcolor[gray]{0.8}31      & 16      & 60         & \cellcolor[gray]{0.8}{21}       & 2       \\ \cline{2-2}
+%                               & 7                                                    & 69        & 95      & \cellcolor[gray]{0.8}{89}      & 64         & 55       & 7       \\ \cline{2-2}
+%                               & 14                                                   & 76        & 100     & \cellcolor[gray]{0.8}{100}     & 68         & 55       & 7       \\ \cline{2-2}
+%                               & 30                                                   & 84        & 100     & \cellcolor[gray]{0.8}{100}     & 74         & 56       & 7       \\ \cline{2-2}
+%                               & 90                                                   & 93        & 100     & \cellcolor[gray]{0.8}{100}     & 69         & 69       & 18      \\ \hline
+% \multirow{5}{*}{ofbiz}        & 1                                                    & \cellcolor[gray]{0.8}{0}         & \cellcolor[gray]{0.8}{0}       & 0       & 63         & \cellcolor[gray]{0.8}{21}       & 2       \\ \cline{2-2}
+%                               & 7                                                    & 54        & 43      & 27      & 66         & 79       & 12      \\ \cline{2-2}
+%                               & 14                                                   & 56        & 70      & \cellcolor[gray]{0.8}{57}      & 73         & 78       & 10      \\ \cline{2-2}
+%                               & 30                                                   & 62        & 87      & \cellcolor[gray]{0.8}{77}      & 79         & 72       & 9       \\ \cline{2-2}
+%                               & 90                                                   & 67        & 100     & \cellcolor[gray]{0.8}{100}     & 83         & 64       & 9       \\ \hline
+% \multirow{5}{*}{qpid}         & 1                                                    & \cellcolor[gray]{0.8}0         & \cellcolor[gray]{0.8}0       & 0       & 60         & \cellcolor[gray]{0.8}16        & 2       \\ \cline{2-2}
+%                               & 7                                                    & \cellcolor[gray]{0.8}0          & \cellcolor[gray]{0.8}0        & 0       & 66         & 71       & 14      \\ \cline{2-2}
+%                               & 14                                                   & \cellcolor[gray]{0.8}0          & \cellcolor[gray]{0.8}0        & 0       & 70         & 78       & 16      \\ \cline{2-2}
+%                               & 30                                                   & \cellcolor[gray]{0.8}0          & \cellcolor[gray]{0.8}0        & 0       & 74         & 82       & 17      \\ \cline{2-2}
+%                               & 90                                                   & 53        & \cellcolor[gray]{0.8}19       & 5       & 79         & 75       & 18      \\ 
+\cline{2-8}
+\end{tabular}
+\caption{Median predictive performance of each model created. Each row corresponds to the performance statistics of a dataset split by a certain time threshold.   \textcolor{gray}{{\bf Shaded cells}}
+indicate ``bad'' results; i.e. false alarms over 33\%
+or precision or recall results under 33\%. Note that such ``bad'' results are far more common when only using local data. From~\cite{rees2017better}.}\label{tab:results}
+\end{wraptable}

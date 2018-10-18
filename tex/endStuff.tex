@@ -10,7 +10,7 @@ more scientific studies via computational means.
 \paragraph{7.2. Integration of Teaching and Research}
 Much of the research in this project will also be integrated into a
 classroom environment.  The PI teaches senior-level and graduate-level
-SE, and data mining classes (and in those data mining
+SE, and software analytics   classes (and in those data mining
 classes, all the case studies come from software engineering). All of
 the technology developed in this proposal will become study
 material for those subjects.  Replication studies are especially ripe
@@ -37,29 +37,43 @@ Some of the simpler data mining concepts for this proposal would be suitable for
 
 %\input{f/under}
 \paragraph{7.4. Dissemination of Knowledge}
-Recall our introductory notes-- one of significant features of this work is its
-immediate industrial applicability.
-All the our methods used here will be based around software tools in widespread industrial use (Jira,Github, Travis CI, etc).  We will release all our tools via open source licenses so our results can be readily applicable to researcher or developers using Jira, Github, etc.
+ The PI has an extensive history of publishing at senior SE venues and so, it should be expected
+that the results of this work will be widely visible.
+
+Also, as mentioned above, the PI has a long history of publishing papers along with reproduction packages holding the data and the scripts required to
+replicated the papers' results. All the our methods used here will be based around software tools in widespread   use (Github, Travis CI, etc).  We will release all our tools via open source licenses so our results can be readily applicable to researcher or developers using   Github, etc.
 Although some of the data used in this study comes from private in-house projects,
 the majority of our data comes open-source projects which we share with the community.
-Further, the PI has an extensive history of publishing at senior SE venues and so, it should be expected
-that the results of this work will be widely visible.
+
+One issue here will be that it might be  too expensive
+to let other groups download our  ingested data:
+\bi
+\item While we can certainly store our raw data on  S3,  Amazon   charges 4 cents per gigabyte download. Assuming our 5TB of data is downloaded 20 times a month for 3 years, that would cost (\$0.05*1024*5*20)*36=\$184,320 $\approx$ 37\% of the grant.
+\item On the other hand, it is possible that our ingested data will occupy only a small fraction of the raw data-- in which case we can give free access
+to our data to all
+research groups.
+\ei
+Regardless of the above two points, we can certainly share all our scripts and bad smell detectors. These would allow other groups to replicated our results
+after they conducted their own downloads.
+ 
+ For more on this point, see our Data Management Plan.
+
+ 
 
 
 \head{8. PRIOR RESULTS:}
 This proposal is the next logical step in the PI's work on analytics.
-{\bf PI Menzies} has worked extensively in that arena.
-s
+{PI Menzies} has worked extensively in that arena.
 In
 \emph{``Automatic
 Quality Assessment: Exploiting Knowledge of the Business Case''} (CCF-0810879, \$350,000, 08/08-06/11),
-{\bf PI Menzies} (with Bojan Cukic, WVU) built   generated many papers~\cite{jiang08a,me09n,me09i,me09b,me10d}
+{PI Menzies} (with Bojan Cukic, WVU) built   generated many papers~\cite{jiang08a,me09n,me09i,me09b,me10d}
 as well as one that is  was the third most-cited
 paper in period 2009 to 2014 in the Journal of Empirical Software
 Engineering.
 
 In ``Better Comprehension of Software Engineering Data'' (CCF-1017330, \$500,000, 08/10-08/14).
-{\bf PI Menzies} (with Andrian Marcus, Wayne State),
+{PI Menzies} (with Andrian Marcus, Wayne State),
 explored various learning strategies (kernel estimation
 methods, active learning tools, privatization methods) to
 support defect and effort estimation. That work generated many papers~\cite{Bavota2010,Bavota2012a,Bavota2013,Bavota2012b,Haiduc2010a, Haiduc2013a, Haiduc2012a, Haiduc2013b, Marcus2010b, Ohlemacher2011b, Scanniello2013, Scanniello2011,me11m, peters12,Me13,me13a,peters12a}.
@@ -69,17 +83,21 @@ spawned a small but active ``local learning'' research sub-community in SE (PI M
 such ``local learners'' find better models
 by first inferring local contexts, then building one model per context~\cite{Me13,me11m}).
 
-Currently, PI Menzies is concluding
+  PI Menzies recently concluded
 ``Transfer Learning in Software Engineering'' (CCF-1302216, \$1,100,000, 08/13-07/18)
-where {\bf PI Menzies} (with Lucas Layman from Franhoufer Institute) is
+where {PI Menzies} (with Lucas Layman from Franhoufer Institute) 
 building a toolkit to explore  methods for moving knowledge
 learned from one software project to another.  That work  has generated
-papers at ICSE'15~\cite{PetersML15}, ASE'15~\cite{krishna16}  and ESEM'13~\cite{he13} as well as the EMSE journal~\cite{Me17}, two IST journal papers~\cite{fu2016tuning,krishna2017learning},
-one TSE paper~\cite{nam2017heterogeneous}. Other papers are under review at JSS~\cite{rees2017better}
-and TSE~\cite{krishna2017simpler}. A surprising and very useful outcome of that work
-is the discovery of ``bellwethers'',  a simple transfer learner.
+papers at TSE'18~\cite{krishna2018bellwethers}, ICSE'15~\cite{PetersML15}, ASE'15~\cite{krishna16}  and ESEM'13~\cite{he13} as well as the EMSE journal~\cite{Me17}, two IST journal papers~\cite{fu2016tuning,krishna2017learning},
+one TSE paper~\cite{nam2017heterogeneous}.   A surprising and very useful outcome of that work
+was the discovery of ``bellwethers'',  a simple transfer learner.
 
-Lastly, PI Menzies has just started ``Scalable Holistic Autotuning for Software Analytics''
+ PI Menzies has been working on  ``Scalable Holistic Autotuning for Software Analytics''
 (CCF-1703487, \$898,349, 7/1/17-6/30/21) which is work with Co-PI Xipeng Shen
 on using compiler technology to optimize very slow software analytics workflows. 
-At the time of this writing, there is nothing to report on this grant.
+That work has several journal papers currently under review.
+
+Also, since May'18 PI Menzies has worked on 
+ EAGER: Empirical Software Engineering for Computational Science (CCF-1826574, \$124,628.00) looking at methods for applying empirical SE to computational science.
+ That time has been spent interviewing domain experts and collecting data from
+ Comp.Sci. projects.
