@@ -1,62 +1,148 @@
 
 
-\head{1. OVERVIEW}
-It is time to stop making 
-limited conclusions from tiny sets of 
-software projects.
-Data science for software engineering
-cannot be called a ``science'' unless
-it makes general conclusions that hold across
-multiple projects.  Such generality must be
-tested on data from  multiple projects. Yet a typical 
-research paper in software analytics studies less
-than a 
-few dozen projects  (exceptions: see~\cite{papersTahtTalkto100sofProjects}). Such small samples can never be representative of something as diverse as software engineering (evidence:
-the Petersen and Wohlins's paper~\cite{Petersen2009}   divides software into 100s of groups according to their different types of
-{\em product, 
-process, practices, people, 
-development organizations}, and
-{\em target markets}.)
 
-To find general conclusions in SE,
+\head{1. INTRODUCTION}
+How should we theorize about SE quality?  Should we use  general models that hold over many projects? Or must we use an ever changing set of ideas that are   continually adapted to the task at hand? 
+Or does the truth lie somewhere in-between?  
+
+This is an open and important question. After a decade of intensive research into automated software analytics,
+what general principles have we learned?
+While that work has generated   specific results about   specific projects~\cite{Bird:2015,menzies2013software},
+it has failed (so far) to deliver general principles that are demonstrably useful across many projects~\cite{menzies2013guest} (for an example of how {\em more} data can lead to {\em less} general conclusions,
+see below in {\S}2a).
+
+Is that the best we can do? 
+Are there general principles we can use to guide project management, software standards, education,   tool development, and legislation about software? 
+Or is  software engineering some ``patchwork quilt'' of ideas and methods where it only makes sense to reason about
+specific, specialized, and small sets of related projects? 
+
+Note that if software was a ``patchwork'' of ideas,   then that would  there would be no stable conclusions about what constitutes best practice for software
+engineering (since those best practices would keep changing as we move from project to project). 
+As discussed in Table~\ref{tbl:why}, such conclusion instability
+would have detrimental
+implications for {\em generality trust, insight, training}, and {\em tool
+          development}.
+          
+     
+One  explanation for the limited conclusions (so far) from automated analytics is  {\em how much} data we are using for analysis. 
+A  typical   software analytics research paper uses less
+than a few dozen projects  (exceptions: see~\cite{krishna18a, zhao17, agrawal18}). Such small samples can never represent something as diverse as software engineering.
+
+In order to build better predictors of software quality
+(and test for the generality of quality models)
 we propose  {\em transfer learning}
 methods across 10,000s of software projects.
 The PI has had much recent research success
-in transferring lessons learned from from project to another~\cite{NamTSE17,allRahulsRecentPubs}-- but only for  handfuls of projects. 
-This project proposes two  novel extensions to
-transfer learning
-(very fast clustering and transfer
+in transferring lessons learned from from project to another~\cite{nam2018heterogeneous,krishna2016b, krishna16a, krishna2017less, krishna2017simpler, krishna2016bigse, krishna16, krishna2017learning}-- but only for  handfuls of projects. 
+In order to scale to 10,000+ projects,   this project will explore two  novel and significant extensions to
+the PI's past work on transfer learning:
+(a)~very fast clustering and (b)~transfer
 learners based 
 on  
 very fast stream mining  algorithms that use
-incremental hyperparameter optimizers).
-With these innovations, we will explore:
-\bi
-\item
- 500+
-computational physics projects (including many projects currently funded by the NSF)\footnote{
-We are exploring thus corpus, for the purposes
-of test case prioritization as part of 
-EAGER: Empirical SE for Computational Science
-Award Number:1826574; PI:Timothy Menzies}. 
-\item
-1500+ 
-commercial projects maintained by our industrial colleagues at Raleigh's Research Triangle\footnote{Their cloud-based  DevOps tool    build, runs, and deploys, code written in   Java, Node.js,  Go, PHP,  Swift,  Python,  Ruby  Sinatra,  Ruby  on Rails (and  is extensible to  other languages).   It is  is used regularly by   100,000+  developers working on   1600 live projects.}.
-\item
-As well as the 10,000+  projects currently available from Github\footnote{ To be precise,
-as of June 2018, GitHub  hosts  57 million repositories. However,  the {\em sanity checks} described later in this proposal show that only around $10^4$ represent concerted  effort by teams of developers.}.
-\ei
-{\em Important note:} Based on the 
-Petersen and Wohlin analysis~\cite{Petersen2009}, we 
-anticipate that one model {\em will not} cover
-all  projects. 
-Tools that report {\em generality} over many software projects need also know the {\em communities} within which those conclusions do  apply. 
+incremental hyperparameter optimizers.
+
+\begin{table}[!b]
+  \caption{There are many reasons to seek stable general conclusions in software
+          engineering. If our conclusions about best practices for SE projects keep
+          changing, that will be detrimental to generality trust, insight, training, and tool
+          development.}\label{tbl:why}
+ {  \begin{tabular}{|rp{.8\linewidth}|}\hline
+ \rowcolor{blue!10}
+  {\em Generality:}& Data science for software engineering cannot be called a ``science'' unless it makes general conclusions that hold across  multiple  projects. If we cannot offer general rules across a large number of softare projects, then it is   difficult to demonstrate such generality.
+\\
+{\em Trust:}&
+ Hassan~\cite{Hassan17} cautions that 
+managers lose faith
+ in software analytics if its models keep changing
+ since  the assumptions used to 
+make prior policy decisions may no longer hold.
+\\
+ \rowcolor{blue!10}{\em Insight:}&
+Kim et al.~\cite{Kim2016},
+ say  that the aim of software analytics is to
+        obtain actionable   insights
+       that
+        help practitioners accomplish   software development tasks.
+ For Tan et al.~\cite{tan2016defining}, 
+        such   insights  are a core deliverable. 
+        Sawyer et al. agrees, saying that  that  insights are the key driver for businesses 
+        to invest in data analytics initiatives~\cite{sawyer2013bi}.  
+           Bird, Zimmermann, et al.~\cite{Bird:2015} say that such  insights occur when
+        users reflect, and react, to the output of a model generated
+        via software analytics. But if  new models keep being generated in new projects,  then that
+          exhausts the ability of  users to draw insight from  new data.\\
+       {\em Training:} &Another concern is what do we train novice software engineers
+          or newcomers to a project?  
+          If our models are not stable, then it hard to teach
+          what factors  most influence software quality.\\
+   \rowcolor{blue!10}        {\em Tool development:}&Further to the last point-- if we are unsure what 
+          factors most influence quality, it is difficult to design and implement and deploy tools
+          that can successfully improve that quality.\\\hline
+          \end{tabular}}
+          \end{table}    
+          
+{\bf Important Point:}  
+Petersen and Wohlin~\cite{Petersen2009} argue that for empirical SE, context matters.
+That is, they would 
+predict that \underline{one model  will NOT  cover
+all  projects} and that  
+tools that report  generality  over many software projects need also know the {\em communities} within which those conclusions   apply. 
 Hence, this work divides into 
  (a)~automated methods for finding sets of  
 projects in the same {\em community};
 and (b)~within each {\em community}, 
-find the model what works best.  
+find the model what works best.   
 
+\definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}
+
+\begin{wrapfigure}{r}{2.5in}
+\includegraphics[width=2.5in]{figs/results.png}
+\caption{How many projects should be used for training predictors of software quality?}\label{results}
+\end{wrapfigure}
+The {\em size} of the communities found in this way
+would have a profound impact on how we should theorize about software engineering. Consider Figure~\ref{results}. 
+The \textcolor{ao(english)}{{\bf GREEN}} curve shows
+some quality predictor that gets better, the more projects it learns from. After about 500 projects, the \textcolor{ao(english)}{{\bf GREEN}} curve's growth stops and we would say that community size here was around 500 projects. In this case, while we could not offer models that cover {\em all} of SE, we could offer a handful of models, each of which would be relevant to large sets of 500   projects.
+Accordingly, we would say that (a)~there are   many cases where  wisdom from
+prior projects can be readily applied to  
+to guide future projects; and (b)~the issues raised in Table~\ref{tbl:why} are not be so pressing.
+
+
+Now consider the \textcolor{red}{{\bf RED}} curve of 
+Figure~\ref{results}. Here, we see that learning from more projects makes quality predictions worse which means the our 10,000 projects break up into ``communities'' of size one.
+In this case,  (a)~principles about what is ``best practice'' for different software projects
+would be constantly change (whenever we jump from small community to small community);
+and (b)~the issues of Table~\ref{tbl:why} would be become open and urgent concerns for the SE analytics community.
+%For a discussion on the implications of this second possibility, see the discussion (below)
+%inside research question {\bf RQ8f}.
+ 
+
+
+\noindent{\bf 1a. Overview of Project:}
+
+{\bf Firstly},
+ this project will implement
+ two novel and significant extensions
+ to the PI's prior work of transfer learning: (a)~very fast clustering and (b)~transfer
+learners based 
+on  
+very fast stream mining  algorithms that use
+incremental hyperparameter optimizers.
+
+   
+{\bf Secondly}, using these innovations,   build software quality predictors for:
+\bi 
+\item
+1500+ 
+commercial projects maintained by our industrial colleagues at Raleigh's Research Triangle.
+Their cloud-based  DevOps tool    build, runs, and deploys, code written in   Java, Node.js,  Go, PHP,  Swift,  Python,  Ruby  Sinatra,  Ruby  on Rails (and  is extensible to  other languages).   It is  is used regularly by   100,000+  developers working on   1600 live projects.
+\item
+As well as the 10,000+  projects currently available from Github. To be precise,
+as of June 2018, GitHub  hosts  57 million repositories. However,  the {\em sanity checks} described later in this proposal show that only around $10^4$ represent concerted  effort by teams of developers.
+\ei
+These quality models will be build for larger and larger groupings of these projects    to see if  SE
+quality models follow the \textcolor{ao(english)}{{\bf GREEN}} or  \textcolor{red}{{\bf RED}} curve of Figure~\ref{results}.
 
 % The obvious question that arises
 % from the above is as follows.
@@ -74,42 +160,86 @@ find the model what works best.
 % in the learner generating the conclusion;
 % and which persist despite   small perturbations of the training data.
 
-In order to make this work manageable,  we will initially
-scope this work  to certain specific 
-analytics tasks (and will expand elsewhere
-if time permits).
-One reason to focus on the following tasks is that they address
-issues raised by two recent surveys of `questions that matter in SE''~\cite{Begel:2014,gupta2015identifying}.
-Also, these tasks are  well-explored in the literature so (a)~we can use pre-existing experimental methods and evaluation criteria; and (b)~that literature offers baseline results against
-which we can compare our new methods.
-These tasks are:
-\bi
-\item {\em Task1:} issue close time;
-\item  {\em Task2:} hero alerts (patterns of overcomits);
-\item {\em Task3:} Impact of different developer skills on software projects;
-\item {\em Task4:} Test case prioritization;
-\item  {\em Task5:} Unsupervised learning;
-\item  {\em Task6:} Defect prediction;
-\item  {\em Task7:} Next-month effort estimates;
-\item  {\em Task8:} Overall effort estimation;
-\item  {\em Task9:} Change planning.
+% \begin{wraptable}{r}{2.5in}
+% {\small \begin{tabular}{|p{.98\linewidth}|}\hline
+% \rowcolor{blue!10}\bi
+% \item {\em Task1:} Issue close time;
+% \item  {\em Task2:} Hero alerts (patterns of over commits);
+% %\item {\em Task3:} Impact of different developer skills on software projects;
+% \item {\em Task3:} Sociotechnical analysis of software projects;
+% \item {\em Task4:} Test case prioritization;
+% \item  {\em Task5:} Unsupervised learning;
+% \item  {\em Task6:} Defect prediction;
+% \item  {\em Task7:} Next-month effort estimates;
+% \item  {\em Task8:} Overall effort estimation;
+% \item  {\em Task9:} Change planning.
+% \ei\\\hline
+% \end{tabular}}
+% \end{wraptable}
+~{\bf Thirdly}, to  make this work manageable,  we will initially
+explore software models for the     
+nine tasks of Table~\ref{tasks}   (and will 
+expand elsewhere
+if time permits). 
+We adopt these nine tasks for two reasons:
+\be
+\item
+They are  well-explored in the literature~\cite{rees2017better, bhattacharya2011bug, giger2010predicting, guo2010characterizing, kikas2016using, marks2011studying, panjer2007predicting, zhang2013predicting, zhang2013predicting,mockus2002two,jarczyk2014github,bissyande2013got,athanasiou2014test,gupta2014process,reyes2017analyzing,jarczyk2014github,bier2011online,morcovcomplex,hislop2002integrating,boehm2006view,wood2005multiview,ducheneaut2005socialization, herbsleb2007global, sarma2009tesseract, cataldo2008socio, baxter2011socio, de2007supporting, madey2002open, lopez2006applying, meneely2008predicting, bird2008latent, casalnuovo2015developer, bird2009putting,srivastava2008test, elbaum2002test, li2007search, rothermel1999test, elbaum2001incorporating, elbaum2004selecting, do2006use, srikanth2005system, 
+jiang2009adaptive, jeffrey2006test,zhong2004analyzing,pedrycz2001self,yuan2000application,zhong2004unsupervised,fu2017revisiting,kumar1998neural,d2012evaluating, fukushima2014empirical, li2012sample, menzies2007data, nam2013transfer, rahman2012recalling, fenton1999critique, lessmann2008benchmarking, zimmermann2009cross,krishna2016too, krishna2017less, shatnawi2010quantitative, alves2010deriving, oliveira2014extracting,turhan2009relative, nam2017heterogeneous, jing2015heterogeneous,krishna18a,menzies2007data, ostrand2005predicting, rahman2013and, zimmermann2008predicting,molokken2003review, shepperd1996effort, finnie1997comparison, burgess2001can, mukhopadhyay1992examining, mukhopadhyay1992examining, walkerden1999empirical, satapathy2014story, coelho2012effort,fowler1999refactoring, gorg2005error, kim2011empirical, mens2004survey, ratzinger2008relation, weissgerber2006refactorings,  weissgerber2006identifying}.
+Hence, we can (a)~use pre-existing experimental methods and evaluation criteria; and (b)~use  baseline results  from the literature to 
+assess   our new methods. 
+\item
+They address
+issues raised by two recent surveys in the SE analytics community
+about  ``questions that matter in SE''~\cite{Begel:2014,gupta2015identifying}.
+For example, they address practitioner questions such as (a)``Are there any specific mistakes that developers make that results in hot-fixes?''; (b)~``Do number of developer working on same bugs have an effect in code quality or timeline?'';
+(c)~``Do existing bugs in code affects the future enhancement of the code base?'';
+(d)~``Is there a  correlation between the details of the requirement and accuracy of effort estimation?'';
+(e)~``Is there a relationship between the release cycle duration and code quality?''; (f)~``What kind of developer affects the productivity of developer and his/her code quality?'';
+or (g)~``How to find a best developer for a certain bug fix or enhancement depending on the developers previous activity?''.
 \ei
-Note that these tasks cover a range of
-data types including
-(a)~unstructured textual artifacts;
-(b)~metrics about human process and experience;
-(c)~process metrics;
-as well as (d)~traditional static code measures.
+\begin{table}[!t]
+\begin{tabular}{|rp{5.8in}|}\hline
+\rowcolor{blue!10}
+{\em Task1:} &Issue close time, to assess it's benefits in terms of development prioritization, resource allocation, release planning, effort estimation etc.~\cite{rees2017better, bhattacharya2011bug, giger2010predicting, guo2010characterizing, kikas2016using, marks2011studying, panjer2007predicting, zhang2013predicting, zhang2013predicting};\\
 
- Finally, in order to demonstrate the external validity of our methods,
+{\em Task2:} &Hero alerts (patterns of overcomits), to analyze the effect of hero programmers to assess affects in term of increasing or decreasing issues/bugs/enhancement resolution time ~\cite{mockus2002two,jarczyk2014github,bissyande2013got,athanasiou2014test,gupta2014process,reyes2017analyzing} , code quality and comprehensibility~\cite{jarczyk2014github,bier2011online,morcovcomplex,hislop2002integrating,boehm2006view,wood2005multiview};\\
+%\item {\em Task3:} Impact of different developer skills on software projects;
+
+\rowcolor{blue!10}{\em Task3:} &Sociotechnical analysis of software projects, to analyze and understand the dynamics the social and technical aspect of Open Source Software projects and get valuable insights about effect of developer experience, communication, organizational structure etc~\cite{ducheneaut2005socialization, herbsleb2007global, sarma2009tesseract, cataldo2008socio, baxter2011socio, de2007supporting, madey2002open, lopez2006applying, meneely2008predicting, bird2008latent, casalnuovo2015developer, bird2009putting} and then apply those insights to enhance future software development.\\
+
+ {\em Task4:}& Test case prioritization, to assess the effect of granularity,specificity etc on rate of fault detection to evaluate execution cost~\cite{srivastava2008test, elbaum2002test, li2007search, rothermel1999test, elbaum2001incorporating, elbaum2004selecting, do2006use, srikanth2005system, 
+jiang2009adaptive, jeffrey2006test};\\
+
+ \rowcolor{blue!10} {\em Task5:}& Unsupervised learning, to create quality predictor as a response to growing data volume without the need for costly labeling for effort estimation~\cite{zhong2004analyzing}, defect prediction~\cite{pedrycz2001self,yuan2000application,zhong2004unsupervised,fu2017revisiting},topic modeling~\cite{kumar1998neural} etc;\\
+
+ {\em Task6:}& Defect prediction~\cite{d2012evaluating, fukushima2014empirical, li2012sample, menzies2007data, nam2013transfer, rahman2012recalling, fenton1999critique, lessmann2008benchmarking, zimmermann2009cross} one of the most sought after research topic in SE, in terms of within project~\cite{krishna2016too, krishna2017less, shatnawi2010quantitative, alves2010deriving, oliveira2014extracting} and cross project~\cite{turhan2009relative, nam2017heterogeneous, jing2015heterogeneous} defect prediction, for assessing software quality, resource planning, effort estimation etc/
+ Wan et al.~\cite{Wan18} report from  their survey
+ of 100s of industrial   practitioners,  90+\% of respondents were eager to adopt defect prediction techniques.
+ \\
+
+ \rowcolor{blue!10} {\em Task7:} &Next-month effort estimates~\cite{krishna18a};
+ This task is important for organizations that manage large teams managing a suite set of
+ cloud-based tools for  a diverse community. In that business context, it is useful to adjust work allocations on a regular basis in anticipate expected changes to the rate of issue/bug reports.\\
+
+ {\em Task8:} &Overall effort estimation ~\cite{menzies2007data, ostrand2005predicting, rahman2013and, zimmermann2008predicting,molokken2003review, shepperd1996effort, finnie1997comparison, burgess2001can, mukhopadhyay1992examining, mukhopadhyay1992examining, walkerden1999empirical, satapathy2014story, coelho2012effort};\\
+
+ \rowcolor{blue!10}{\em Task9:} &Change planning, to understand the effect of code refactoring~\cite{fowler1999refactoring, gorg2005error, kim2011empirical, mens2004survey, ratzinger2008relation, weissgerber2006refactorings,  weissgerber2006identifying} depending on suggested changes by historical data from previous releases or from model project from same/diverse community.\\\hline
+\end{tabular}
+\caption{To  make this research work manageable,  we will initially
+scope this work  to the   
+tasks here  (and will 
+expand elsewhere
+if time permits). 
+}\label{tasks}
+\end{table}
+{\bf Fourthly}, to demonstrate the external validity of our methods,
 we will watch for new releases of the projects we are studying.
 When such new releases occur, we will apply our current
 models to those new releases. This will demonstrate
 the value (or otherwise) of our models on new data.
 
 
-
-\newpage
 % \begin{wraptable}{r}{3in}
 % \renewcommand{\baselinestretch}{.65} 
 % \scriptsize
@@ -136,6 +266,8 @@ the value (or otherwise) of our models on new data.
 % current experience. Note that there are many cells with limited to no experience. New developments in those areas would need to learn what they can from other types of projects.}\label{tbl:types}
 % \end{wraptable}
 
+
+\newpage
 \head{2. BACKGROUND}
 % Researchers and industrial practitioners routinely make extensive use of 
 % software 
@@ -159,28 +291,85 @@ the value (or otherwise) of our models on new data.
 % large datasets collected from developers~\cite{export:208800,theisen15}.
 % See \cite{me13c,bird2015art} for other examples.
 % the  {\em problems} of  learning from 10,000+ other projects.
-Why try learning from 10,000+ projects?  One reason    is that
-the experience in other fields is that the {\em more} training data,
-the {\em better} the learned model. Vapnik~\cite{vapnik14} discusses examples
-where models trained to  15,000 examples obtain a
-85\%-87\% accuracy. But when trained on
-  500,000   examples, those models  achieve 98\% correctness. This effect has yet to be seen in SE data~\cite{menzies2013guest} but that might just mean we have yet
+In this section, we ask ``Why even bother to transfer lessons learned between  10,000+ projects?''. More specifically, we review the evidence that  it is useful to explore more than just the local data. This evidence falls into four groups:
+\begin{enumerate}
+\item[a.] The lesson on big data is that that the {\em more} training data, the {\em better} the learned model.
+\item[b.] We need to learn from more data since 
+there is very little agreement on what has been learned to far.
+\item[c.]  Imported data can be more useful than local data.
+\item[d.]  When there is insufficient local data,
+learning from other projects is very useful
+\end{enumerate}
+For notes on these four points, see below.
+
+ \begin{center}{\em a. 
+ The lesson from big data research is that that the  {\em more}\\
+ training data, the {\em better} the learned model.}
+ \end{center}
+ 
+ Vapnik~\cite{vapnik14} discusses examples
+where models accuracy improves to nearly 100\%, just by training on $10^2$ times as much data.
+ This effect has yet to be seen in SE data~\cite{menzies2013guest} but that might just mean we have yet
   to use enough training data (hence, this project). 
   
+
+\begin{center}
+{\em b. We need to learn from more data since there is \\
+is very little agreement on what has been learned so far.}
+\end{center}
+
+Another reason to try generalizing across more SE data is that, among developers, there is little agreement on
+what many issues relating to software:
+\bi
+\item
+According to Passos et al.~\cite{passos11},  developers often  assume that 
+	the lessons they learn from a few past projects are general to all their 
+	future projects. They comment, ``past experiences were taken into account 
+	without much consideration for their context''~\cite{passos11}. 
+	\item
+	J{\o}rgensen \& Gruschke~\cite{Jo09} offer a similar warning. They 
+	report that the supposed software engineering ``gurus'' rarely use lessons 
+	from past projects to improve their future reasoning and that such poor 
+	past advice can be detrimental to new projects.~\cite{Jo09}.
+\item
+Other 
+	studies have shown some widely-held views are   now questionable given new 
+	evidence.
+	Devanbu et al. examined responses from 564 Microsoft software developers 
+	from around
+	the world. They comment programmer beliefs can vary with each project, but do not necessarily
+	correspond with actual evidence in that project~\cite{De16}. 
+	\ei
+	The good news is that, using software analytics, we can correct the above misconceptions.
+	If data mining shows that   doing  XYZ is      bug prone,
+	then we could  guide developers to avoid   XYZ. But will developers listen to us?
+	If they ask ``are   we sure  XYZ causes problems?'', can we say that we have mined enough projects
+	to ensure that XYZ is problematic? Considerations such as these motivate this research proposal.
+	
+It turns out that developers are not the only ones confused about how various factors influence software projects. 	
+Much recent research calls into question  the
+ ``established widoms'' of our field. For example, here is a list of recent conclusions that contradict prior conclusions:
+\bi
+\item In stark contrast to  much prior research, pre- and post- release failures are not connected~\cite{fenton2000quantitative};
+\item Static code analyzers perform no better than simple statistical predictors~\cite{Fa13}; 
+\item
+The language construct GOTO, as used in contemporary practice, is rarely
+considered harmful~\cite{nagappan2015empirical};
+\item Strongly typed languages are not associated with successful projects~\cite{ray2014large};  
+\item Test-driven development is not any better than "test last"~\cite{fucci2017dissection};
+\item Delayed issues are not exponentially more expensive to fix~\cite{menzies2017delayed};
+\item For most  ``bad smells'', there is little value on fixing them~\cite{krishna2017less}
+\ei
+Note that if the   reader disputes any of the above, then we ask how would you challenge the items on this list?
+Where would you get the data, from enough projects to   successfully refute the above? And where would you get that data? And how would you draw conclusions form that large set? Considerations such as these lead to this proposal.
+	
+
+
+\begin{center}
+{\em c. Imported data can be more useful than local data.}
+\end{center}
+
 \input{figs/issue.tex}
-Another reason to look at more than just local data
-is that   local data might be scarce.
-This is particularly true when developers are doing something that is novel to them, but has been widely applied elsewhere
-For example,
-Clark and Madachy~\cite{clark15} discuss 65 types of software they see        under-development by
-the US Defense Department in 2015.   Some of these types are very common (e.g   22 ground-based communication systems)
-but other types are very rare (e.g. only  one avionics communication system). When developing
- new software in  novel areas, it is useful to draw on the relevant  experience  from 
- other areas of greater experience (e.g. workers on a flight avionics systems might check for lessons
-learned from ground-based communications systems).
-
-
-
 Another benefit of  importing data from other projects is that, sometimes,
 that imported data can be better than the local information.
 For example, Rees-Jones and PI Menzies
@@ -188,17 +377,20 @@ report one study that built  predictors
 for Github  close time\footnote{Q: Why predict Github issue close time? A:
  It helps developers prioritize work; helps managers allocate resources and improve consistency of release cycles; and helps stakeholders understand changes in project timelines and budgets.It is also useful to predict issue close time when an issue is created; e.g.  to send a notification if it is predicted that the current issue is an easy fix.}
  for open source projects~\cite{rees2017better}. As shown in \tab{results},
-these predictors were built in two ways.
+these predictors
+were built in two ways.
 In the {\em local learning} experiments,
 local  project data was divided into 
-{\em train:test} and  a
+{\em train:test} 
+and  a
   model grown on {\em train} was applied to 
 {\em test}.  In the {\em round robin} experiments,
 models were grown on $N-1$ projects,
 then tested on the final $N$th project. 
 Separate  predictors were used to predict for different close times.
+
 As shown in \tab{results},
-many {\em local learning} results wew
+many {\em local learning} results are
   ``bad'';
 i.e. false alarms over 33\% or precision/recalls
 under 33\%. But such ``bad'' results are absent in the {\em round robin} results.
@@ -206,8 +398,48 @@ That is, for predicting  issue close time, it is best to use data from other  pr
 (because there is better  information {\em there}
 than {\em here}).
 
- \begin{wrapfigure}{r}{2.7in}
-   {\scriptsize
+
+\newpage
+
+\begin{center}
+{\em d. When there is insufficient local data,\\
+learning from other projects is very useful.}
+\end{center}
+Yet another reason to look at more than just local data
+is that   local data might be scarce.
+This is particularly true when developers are doing something that is novel to them, but has been widely applied elsewhere
+For example,
+Clark and Madachy~\cite{clark15} discuss 65 types of software they see        under-development by
+the US Defense Department in 2015.   Some of these types are very common (e.g.   22 ground-based communication systems)
+but other types are very rare (e.g. only  one avionics communication system). When developing
+ new software in  novel areas, it is useful to draw on the relevant  experience  from 
+   areas with more   examples (e.g. workers on   flight avionics   might check for lessons
+learned from ground-based communications).
+
+
+ 	
+ 
+
+ 
+
+\noindent{\bf 2a. Transfer Learning}
+Results like  these have prompted   work on {\bf transfer learning};
+i.e.  the art of moving data and/or lessons learned from one project or another.
+That research have focused on two  variants: (a)~dimensionality transform  methods by (e.g.) Nam, 
+Jing et al.~\cite{nam2017heterogeneous,Nam2015,Jing2015} and (b)~similarity based 
+approaches of (e.g.) Kocaguneli, Peters and Turhan et  
+al.~\cite{kocaguneli2011find,kocaguneli2012,turhan09,peters15}. 
+
+
+One 
+problem with transfer learning is  {\em conclusion instability}; i.e.  
+\begin{center}
+{\em The more
+data we transfer from more projects, the more   conclusions change.}
+\end{center}
+
+ \begin{wrapfigure}{r}{3in}
+   {\small
   \renewcommand{\baselinestretch}{.80} 
  \begin{alltt}   
   {\sffamily let} c    = nIssuesCreatedInProjectClosed
@@ -225,28 +457,15 @@ than {\em here}).
      {\sffamily if} m > 596 {\sffamily then} false {\sffamily else}
         {\sffamily if} m <= 524 {\sffamily then} false {\sffamily else} true\end{alltt}}
   \caption{ Decision trees from  \tab{results} use different features for each  data set. From~\protect\cite{rees2017better}.}\label{fig:unstable} 
- \end{wrapfigure}	Results like  these have prompted   work on {\em transfer learning};
-i.e.  the art of moving data and/or lessons learned from one project or another.
-That research have focused on two  variants: (a)~dimensionality transform  methods by (e.g.) Nam, 
-Jing et al.~\cite{nam2017heterogeneous,Nam2015,Jing2015} and (b)~similarity based 
-approaches of (e.g.) Kocaguneli, Peters and Turhan et  
-al.~\cite{kocaguneli2011find,kocaguneli2012,turhan09,peters15}. 
-
- 
-
-
-\noindent{\bf 2a. Problems with Transfer:} One 
-problem with transfer learning is  {\em conclusion instability}; i.e.  
-\begin{quote}
-{\em The more
-data we sample from more projects, the more   conclusions change.}
-\end{quote}
-For example, \fig{unstable} shows decision trees from two data sets from \tab{results}. In {\em Cocoon},
+ \end{wrapfigure}
+ For example, \fig{unstable} shows decision trees from two data sets of \tab{results}. In    
+  {\em COCOON} project
 the experience of the developer with this
 project (as witnessed via {\tt nCommitsInProject})
-is very important but in {\em Hadoop} it is not.
-Further, the thresholds when {\tt nIssuesCreatedInProjectClosed} becomes important
-are very different.
+is very important. However, in   the  {\em HADOOP} project, it is not.
+Further, in both, the  thresholds when {\tt nIssuesCreatedInProjectClosed} becomes important
+are very different. That is, if we tried to transfer the rules learned from {\em both} COCOON and HADDOP, it would not
+be clear what message these rules are telling us.
 
  
 Such conclusion instability in SE, specifically in transfer 
@@ -261,103 +480,66 @@ Also, Turhan~\cite{me12d} studied defect predictors  from 28 recent
 studies, most of which offered widely differing conclusions about what  
 effects software defects.  
 
-\noindent{\bf 2b. But Why Solve This Problem?}
-How to support  managers (and researchers) who seek stable conclusions,
-while also allowing new projects
-to   benefit from new data from other projects?
- Why not just learn a  different model if ever the data sources  
-are updated? 
-
-
-The premise of this proposal is that it does matter,
-very much, if our models keep changing all the time.
-When processing  10,000+ projects, such   instabilities are  highly detrimental to   {\em generality}, {\em trust}, {\em insight},  {\em training}, and {\em tool development}:
-\bi
-\item {\em Generality:} As mentioned above,  data science for software engineering cannot be called a ``science'' unless it makes general conclusions that hold across  multiple  projects. Conclusion instability makes it difficult to demonstrate such generality
-since those supposed ``general'' conclusions keep changing.
-\item {\em Trust:}
- Hassan~\cite{Hassan17} cautions that 
-managers lose faith
- in software analytics if its models keep changing
- since  the assumptions used to 
-make prior policy decisions may no longer hold.
-
-\item {\em Insight:}
-Kim et al.~\cite{Kim2016},
- say  that the aim of software analytics is to
-        obtain actionable   insights
-       that
-        help practitioners accomplish   software development tasks.
- For Tan et al.~\cite{tan2016defining}, 
-        such   insights  are a core deliverable. 
-        Sawyer et al. agrees, saying that  that  insights are the key driver for businesses 
-        to invest in data analytics initiatives~\cite{sawyer2013bi}.  
-           Bird, Zimmermann, et al.~\cite{Bird:2015} say that such  insights occur when
-        users reflect, and react, to the output of a model generated
-        via software analytics. But if  models keep changing (e.g. due to constantly transferring in new data), then that
-          exhausts the ability of  users to draw insight from  new data.
-          \item {\em Training:} Another concern is what do we train novice software engineers
-          or newcomers to a project?  
-          If our models are not stable, then it hard to teach
-          what factors  most influence software quality.
-          \item {\em Tool development:} Further to the last point-- if we are unsure what 
-          factors most influence quality, it is difficult to design and implement and deploy tools
-          that can successfully improve that quality.
-\ei
+Note that conclusion instability raises all the problems discussed in  Table~\ref{tbl:why}.
+ 
 %XXX systems issues. not large on hard drive.
 
- \begin{figure}[!b]
- {\footnotesize
- \begin{minipage}{3.2in}
-{\bf \fig{xtree}a.}   {\em  The BELLTREE algorithm  suggests changes  for improving software quality using  contrast sets between lower and higher quality outcomes. When used as the learner
-within  a bellwether method,
-BELLTREE finds a project1 that can serve as an oracle for changes to other projects2,3,4... From~\cite{rahulbelltreeTSE}.}\vspace{8mm} 
+%  \begin{figure}[!b]
+%  {\footnotesize
+%  \begin{minipage}{3.2in}
+% {\bf \fig{xtree}a.}   {\em  The BELLTREE algorithm  suggests changes  for improving software quality using  contrast sets between lower and higher quality outcomes. When used as the learner
+% within  a bellwether method,
+% BELLTREE finds a project1 that can serve as an oracle for changes to other projects2,3,4... From~\cite{rahulbelltreeTSE}.}\vspace{8mm} 
  
- \begin{tabular}{|p{.95\linewidth}|}\hline
- Using training data,
- BELLTREE  construct a regression tree (e.g. see below). For each test item, BELLTREE finds the {\em current} leaf by running  it down to its appropriate 
- leaf. BELLTREE returns the {\em contrast} set ``$\Delta$''  between conditions in the  tree branch to {\em desired} and {\em current}.
-For example the following tree generates a  ``$\Delta$''  that
- uses {\em lcom} (lines of code and metrics) and {\em cam} (class cohesion).
+%  \begin{tabular}{|p{.95\linewidth}|}\hline
+%  Using training data,
+%  BELLTREE  construct a regression tree (e.g. see below). For each test item, BELLTREE finds the {\em current} leaf by running  it down to its appropriate 
+%  leaf. BELLTREE returns the {\em contrast} set ``$\Delta$''  between conditions in the  tree branch to {\em desired} and {\em current}.
+% For example the following tree generates a  ``$\Delta$''  that
+%  uses {\em lcom} (lines of code and metrics) and {\em cam} (class cohesion).
  
-\noindent\includegraphics[width=0.9\linewidth]{figs/XTREE_samp.eps}
+% \noindent\includegraphics[width=0.9\linewidth]{figs/XTREE_samp.eps}
   
-To find  {\em desired}, BELLTREE starts at the  {\em current}, and ascend the tree levels looking for  {\em sibling} leaves
-*leaf clusters that can be reached from level $\mathit{lvl}$ that are not same as {\em current}) that are   {\em better};i.e. those with a {\em score} (\#defects) less than $\gamma=0.5$ times the score of {\em current} branch. 
-Constrasts are generated by comparing {\em desired} and  {\em current}.
-For  discrete attributes, the contrast is the value from {\em desired}. For  numerics, the contrast is the numeric difference. For numerics  discretized into ranges, the contrast is a random number selected from the low and high boundaries of the that range.  
- \\\hline
- \end{tabular}
+% To find  {\em desired}, BELLTREE starts at the  {\em current}, and ascend the tree levels looking for  {\em sibling} leaves
+% *leaf clusters that can be reached from level $\mathit{lvl}$ that are not same as {\em current}) that are   {\em better};i.e. those with a {\em score} (\#defects) less than $\gamma=0.5$ times the score of {\em current} branch. 
+% Constrasts are generated by comparing {\em desired} and  {\em current}.
+% For  discrete attributes, the contrast is the value from {\em desired}. For  numerics, the contrast is the numeric difference. For numerics  discretized into ranges, the contrast is a random number selected from the low and high boundaries of the that range.  
+%  \\\hline
+%  \end{tabular}
 
 
- \end{minipage}~~
-\begin{minipage}{3in}
- {\bf \fig{xtree}b.} {\em    Testing BELLTREE on    
-  open source JAVA projects. Code   changes between releases $i$ and $i+1$ were compared to the plans generated
- at release $i$.   As shown here, the greater the overlap , the fewer
- defect increases (and sometimes, defect counts even decreased). From~\cite{rahulbelltreeTSE}.}\vspace{3mm} 
+%  \end{minipage}~~
+% \begin{minipage}{3in}
+%  {\bf \fig{xtree}b.} {\em    Testing BELLTREE on    
+%   open source JAVA projects. Code   changes between releases $i$ and $i+1$ were compared to the plans generated
+%  at release $i$.   As shown here, the greater the overlap , the fewer
+%  defect increases (and sometimes, defect counts even decreased). From~\cite{rahulbelltreeTSE}.}\vspace{3mm} 
  
 
  
-\begin{tabular}{|p{\linewidth}|}\hline
-  \includegraphics[width=2.9in]{figs/belltree.png}\\\hline
- \end{tabular}
+% \begin{tabular}{|p{\linewidth}|}\hline
+%   \includegraphics[width=2.9in]{figs/belltree.png}\\\hline
+%  \end{tabular}
  
- \end{minipage}}
- \caption{At left: Generating recommendations from BELLTREES. At right: effect of the recommendations.}\label{fig:xtree}
-\end{figure}
+%  \end{minipage}}
+%  \caption{At left: Generating recommendations from BELLTREES. At right: effect of the recommendations.}\label{fig:xtree}
+% \end{figure}
 
-\noindent{\bf 2c. Longer stability with ``Bellwethers''} 
+ 
+
+\noindent{\bf 2b. Longer stability with ``Bellwethers''} 
 If we cannot {\em generalize} 
 from all 10,000+ projects, a more achievable goal is to {\em
 slow} the pace of conclusion change.
-While it may be
-a fool's errand  to wait for   globally stable SE
-conclusions, we could declare some  projects as    {\em ``bellwethers''}\footnote{ According to the Oxford English Dictionary, the
-``bellwether'' is the leading sheep of a flock, with a bell on its neck.} that make conclusions 
-within {\em communities} of related projects.
+While it may be a fool's errand to wait for eternal and global SE conclusions, one possible approach is for organizations to declare $N$ prior projects as 
+ reference projects, from which lessons learned will be transferred to new projects. 
+ We call such reference projects the {\em bellwethers}
+that make conclusions 
+within {\em communities} of related projects (according to the Oxford English Dictionary, the
+``bellwether'' is the leading sheep of a flock, with a bell on its neck).
+
 We  distinguish between the bellwether {\em effect}
-and {\em  method}:
+and the bellwether {\em  method}:
 \bi
 \item \textit{The bellwether effect} states that when a community works on 
 multiple software projects, then  there exists one exemplary project, called the bellwether,
@@ -378,131 +560,97 @@ Clearly, the conclusion stability offered by bellwethers only lasts as long as t
 The experience to date (as reported in ASE'16 and TSE'18~\cite{KrishnaMF16,krishna2018bellwethers}) is that 
 bellwether methods are (a)~{\em simple to implement},
 (b)~{\em general and useful} in many SE domain;
- (c)~generates succinct and {\em effective actionable analytics};
+ (c)~generates {\em succinct and  effective actionable analytics};
 (d)~{\em comparable, or better,
 than   other 
 transfer learning methods}:
-
-~{\em (a.) Simple to Implement:} Given a community
+\bi
+\item[a.]
+{\em Simple to Implement:} Given a community
 of $N$ related projects, a bellwether method 
 merely wraps a for-loop around some learner that
 trains on project $N_i$ then tests on all other projects $N-N_i$. The project $N_i$ that generates the best performance is then designated as the bellwether. 
 % Note that if the communities
 % are unknown, then this search must execute with a $O(2^N)$ search through all subsets of the data.
 % (later in this proposal, methods are discussed to significantly reduce the cost of this  $O(2^N)$ search to $O(N)$). 
-
-
-~{\em (b.) General and useful:} 
-\fig{xtree} and \fig{motivating_example} presents
-a  simple and detailed example of using bellwethers for  planning changes to reduce
-future defects.  While that example is about defect prediction,
-it is important to note that  bellwethers have been
-found useful in many other SE domains as well such as  (1)~predicting defects from static code measures; (2)~identifying bad smells; and (3)~the above Github issue close time problem~\cite{KrishnaMF16,krishna2018bellwethers}. In those tests,  predictions from the bellwethers proved to be as good, as better, than those obtained otherwise. Bellwethers have also been   applied  to (4)~learning effort estimates (where  some slice of a project's prior history were found  useful for predicting  current conditions~\cite{mensah2017investigating,mensah2017stratification,mensah18z}).
-
-
-
- 
-
- 
- %XXXheterogenous
+\item[b.] {\em General and useful:} 
+This bellwether method has been successfully applied to several SE domains:
+\bi
+\item Software defect prediction~\cite{krishna2018bellwethers};
+\item Identifying bad smells~\cite{krishna2018bellwethers}; 
+\item The above Github issue close time problem~\cite{KrishnaMF16,krishna2018bellwethers}. In those tests,  predictions from the bellwethers proved to be as good, as better, than those obtained otherwise.
+\item 
+Bellwethers have also been   applied  to ( learning effort estimates, where  some slice of a project's prior history were found  useful for predicting  current conditions~\cite{mensah2017investigating,mensah2017stratification,mensah18z}).
+\ei
 \definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}
-~{\em (c.) Succinct and effective actionable analytics:}
-\fig{xtree}a shows BELLTREE, a learner 
-that
-proposes changes to improve software quality.  When used as
-the learner within a bellwether method, BELLTREE
-finds a project that becomes the
-oracle of what to change in other projects.
-As shown in \fig{xtree}b,
-these changes are very effective
-(and see   \fig{motivating_example} for an example of how to apply BELLTREE's recommendations).
-When compared to other oracles of ``what to change'', BELLTREEs typically recommends
-one to five changes-- which is a three times fewer
-changes that recommend by other   ``what to change''
-oracles proposed by  Alves, Erni, Hermans, and Shatnawi et al.~\cite{Al10},~\cite{Er96},~\cite{He15}, and~\cite{Sh10}.
-Note that such brevity makes BELLTREEs an excellent methods for  generating the tiny models that uses can inspect
-in order to improve   their {\em trust} and {\em insight} that they are understanding their project.
-
-
-
-\begin{figure}
-{ \footnotesize
-\begin{minipage}{3in}
-{\bf  \fig{motivating_example}a}. Example BELLTRREE recommendations.
-`$+$=\textit{increase} and  `$-$',`$\cdot$'=\textit{no-change}.
-
-\resizebox{\linewidth}{!}{\begin{tabular}{ccccccccc}
-\hline
-\rowcolor{Gray} DIT & NOC & CBO & RFC & FOUT & WMC & NOM & LOC & LCOM \\
-$\cdot$ & $\cdot$    & $\cdot$    & $+$   & $\cdot$     & $+$   & $+$   & $+$   & $+$    \\\hline
-\end{tabular} }
-
-~\\~\\~\\
-
-{\bf \fig{motivating_example}b.} A sample of possible actions developers can take.
- Here a `$+$' represents an \textit{increase}, a `$-$' represents a \textit{decrease}, and an empty cell represents \textit{no-change}.
-Taken from~\cite{stroggylos2007, du2006study, kataoka2002, bryton2009,elish2011,elish2012}. The action highlighted in \colorbox{lightgray}{gray} shows an  action matching BELLTREE's   recommendation. 
-
-\resizebox{\linewidth}{!}{\begin{tabular}{lccccccccc}
-\hline
-\rowcolor{Gray}Action                                      & DIT & NOC & CBO & RFC & FOUT & WMC & NOM & LOC & LCOM \\ 
-Extract Class                               &     &     & $+$   & $-$   & $+$    & $-$   & $-$   & $-$   & $-$    \\
-\rowcolor{lightgray} Extract Method                              &     &     &     & $+$   &      & $+$   & $+$   & $+$   & $+$    \\
-Hide Method                                 &     &     &     &     &      &     &     &     &      \\
-Inline Method                               &     &     &     & $-$   &      & $-$   & $-$   & $-$   & $-$    \\
-Inline Temp                                 &     &     &     &     &      &     &     & $-$   &      \\
-Remove Setting Method                       &     &     &     & $-$   &      & $-$   & $-$   & $-$   & $-$    \\
-Replace Assignment                          &     &     &     &     &      &     &     & $-$   &      \\
-Replace Magic Number                        &     &     &     &     &      &     &     & $+$   &      \\
-Consolidate Conditional                     &     &     &     & $+$   &      & $+$   & $+$   & $-$   & $+$    \\
-Reverse Conditional                         &     &     &     &     &      &     &     &     &      \\
-Encapsulate Field                           &     &     &     &     &      & $+$   & $+$   & $+$   & $+$    \\
-Inline Class                                &     &     & $-$   & $+$   & $-$    & $+$   & $+$   & $+$   & $+$    \\ \hline
-\end{tabular}}
-
-\end{minipage}~~~~~~~~~~~\begin{minipage}{3.5in}
-{\bf \fig{motivating_example}c.}
-
-Before ``extract method''. ~~~~~~~~~~~~~~~  After `extract method''.
-
-~\\
-
-\includegraphics[width=0.5\linewidth]{figs/1.png}\includegraphics[width=0.5\linewidth]{figs/2.png}
-\end{minipage}
-}
-\caption{ How to  operationalize BELLTREE's advice on ``what to change''. 
-METHOD1: Nayrolles et al.~\cite{nayrolles2018clever} 
-look through a
-developer's own history to find old examples where they have made the kinds of changes recommended by the plan. 
-METHOD2: When that data is not available, we use  research papers that
-discussed how code changes adjust
-static code metrics~\cite{stroggylos2007, du2006study, kataoka2002, bryton2009, elish2011, elish2012}.
-For example,  if BELLTREE   recommends the changes of \fig{motivating_example}a, then, we use \fig{motivating_example}b  to look-up possible actions;
-e.g.   ``extract method'' best matches BELLTREE's recommendation.  \fig{motivating_example}c shows code before and after
-such changes are applied.}\label{fig:motivating_example}
-\end{figure}
-
-
-~{\em (d.) Comparable, or better, than   other 
+\item [c.] {\em  Succinct and effective actionable analytics:}
+In a TSE'18 article~\cite{krishna2018bellwethers},
+we have compared the effectiveness and succinctness of recommendations generated via bellwether methods
+to other systems that recommend
+ ``what to change''
+ (specifically the change
+oracle proposed by  Alves, Erni, Hermans, and Shatnawi et al.~\cite{Al10},~\cite{Er96},~\cite{He15}, and~\cite{Sh10}).
+Bellwether's recommendations were usually easier to apply since  they mentioned three times fewer
+attributes that then other oracles. 
+% \begin{figure}
+% { \footnotesize
+% \begin{minipage}{3in}
+% {\bf  \fig{motivating_example}a}. Example BELLTRREE recommendations.
+% `$+$=\textit{increase} and  `$-$',`$\cdot$'=\textit{no-change}.
+% \resizebox{\linewidth}{!}{\begin{tabular}{ccccccccc}
+% \hline
+% \rowcolor{Gray} DIT & NOC & CBO & RFC & FOUT & WMC & NOM & LOC & LCOM \\
+% $\cdot$ & $\cdot$    & $\cdot$    & $+$   & $\cdot$     & $+$   & $+$   & $+$   & $+$    \\\hline
+% \end{tabular} }
+% ~\\~\\~\\
+% {\bf \fig{motivating_example}b.} A sample of possible actions developers can take.
+%  Here a `$+$' represents an \textit{increase}, a `$-$' represents a \textit{decrease}, and an empty cell represents \textit{no-change}.
+% Taken from~\cite{stroggylos2007, du2006study, kataoka2002, bryton2009,elish2011,elish2012}. The action highlighted in \colorbox{lightgray}{gray} shows an  action matching BELLTREE's   recommendation. 
+% \resizebox{\linewidth}{!}{\begin{tabular}{lccccccccc}
+% \hline
+% \rowcolor{Gray}Action                                      & DIT & NOC & CBO & RFC & FOUT & WMC & NOM & LOC & LCOM \\ 
+% Extract Class                               &     &     & $+$   & $-$   & $+$    & $-$   & $-$   & $-$   & $-$    \\
+% \rowcolor{lightgray} Extract Method                              &     &     &     & $+$   &      & $+$   & $+$   & $+$   & $+$    \\
+% Hide Method                                 &     &     &     &     &      &     &     &     &      \\
+% Inline Method                               &     &     &     & $-$   &      & $-$   & $-$   & $-$   & $-$    \\
+% Inline Temp                                 &     &     &     &     &      &     &     & $-$   &      \\
+% Remove Setting Method                       &     &     &     & $-$   &      & $-$   & $-$   & $-$   & $-$    \\
+% Replace Assignment                          &     &     &     &     &      &     &     & $-$   &      \\
+% Replace Magic Number                        &     &     &     &     &      &     &     & $+$   &      \\
+% Consolidate Conditional                     &     &     &     & $+$   &      & $+$   & $+$   & $-$   & $+$    \\
+% Reverse Conditional                         &     &     &     &     &      &     &     &     &      \\
+% Encapsulate Field                           &     &     &     &     &      & $+$   & $+$   & $+$   & $+$    \\
+% Inline Class                                &     &     & $-$   & $+$   & $-$    & $+$   & $+$   & $+$   & $+$    \\ \hline
+% \end{tabular}}
+% \end{minipage}~~~~~~~~~~~\begin{minipage}{3.5in}
+% {\bf \fig{motivating_example}c.}
+% Before ``extract method''. ~~~~~~~~~~~~~~~  After `extract method''.
+% ~\\
+% \includegraphics[width=0.5\linewidth]{figs/1.png}\includegraphics[width=0.5\linewidth]{figs/2.png}
+% \end{minipage}
+% }
+% \caption{ How to  operationalize BELLTREE's advice on ``what to change''. 
+% METHOD1: Nayrolles et al.~\cite{nayrolles2018clever} 
+% look through a
+% developer's own history to find old examples where they have made the kinds of changes recommended by the plan. 
+% METHOD2: When that data is not available, we use  research papers that
+% discussed how code changes adjust
+% static code metrics~\cite{stroggylos2007, du2006study, kataoka2002, bryton2009, elish2011, elish2012}.
+% For example,  if BELLTREE   recommends the changes of \fig{motivating_example}a, then, we use \fig{motivating_example}b  to look-up possible actions;
+% e.g.   ``extract method'' best matches BELLTREE's recommendation.  \fig{motivating_example}c shows code before and after
+% such changes are applied.}\label{fig:motivating_example}
+% \end{figure}
+\item [d.] {\em Comparable, or better, than   other 
 transfer learning methods:} 
-While
-the example of \fig{xtree} is based on static code
-metrics and defect reduction, the BELLTREE bellwether method is
-quite general and has  been
-applied to the Github issue close time 
-problem of \tab{results} as well
-as effort estimation and recognizing code bad smells~\cite{krishna19a}.
-For these
-domains, the bellwether method has been  compared
-to state-of-the-art transfer learning methods:
-Transfer Component Analysis (referred to henceforth as TCA+)~\cite{XXX};
-Transfer Naive Bayes~\cite{XXX}; and
- Value Cognitive Boosting Learner~\cite{XXX}.
- In that comparison,
+Our experimental work has compared bellwethers against state-of-the-art transfer learning methods:
+Transfer Component Analysis~\cite{Nam13};
+Transfer Naive Bayes~\cite{Ma2012}; and
+ Value Cognitive Boosting Learner~\cite{vcboost16}.
+ In those comparisons~\cite{krishna2018bellwethers},
  it was observed that
 there was no universal best transfer learner that works across multiple domains. That said, simpler baseline methods like bellwethers show comparable performances in several domains. Hence, we recommend bellwethers for all domain, at
 least as a first-pass baseline system.
-
+\ei
 
 \head{3. RESEARCH QUESTIONS} Before we can scale these bellwether methods to 10,000+ projects, numerous research questions have
 to be answered. These questions divide into (a)~overall questions; (b)~systems questions; (c)~technology questions and (d)~evaluation questions: 
@@ -511,88 +659,46 @@ to be answered. These questions divide into (a)~overall questions; (b)~systems q
 \noindent{\bf 3a. The Overall Question}  
 
 
-{\em RQ1: Is   worthwhile buiding models from 10,000+ projects?}  Can transfer learning (with bellwethers) between 10,000+ project generate better, more insightful, models than
- methods that  just react to  new data sets? Or is learning from so much data inherently so confusing that no general model can be found?
+\textit{\textbf{ RQ1: Can ``mega-transfer''learning between 10,000+ project generate better, more insightful, models?}}  Or is learning from so much data inherently so confusing that no general model can be found?
+
+To explore this question, we will build
+quality models from larger and larger groupings of   projects.
+This will let us test if   SE
+quality models follow the \textcolor{ao(english)}{{\bf GREEN}} or  \textcolor{red}{{\bf RED}} curve of Figure~\ref{results}.
+
+
  
-The problem of ``too much data confuses model generation'' can be partially 
-mitigated by bellwethers and communities.
-Bellwether methods do not try to generalize across all data-- rather, they seek generalizations with in a community of related projects. For a discussion on automatic methods to find those communities in 10,000+ projects, see later in this grant.
+ 
+ 
+ 
 
-That said, even when restricted to communities,
-recent research results from the field of medicine suggest
-that  attempting to build general models from large amounts of
-data   might be inherently misguided. Decades of research on evidence-based reasoning in medicine have not resulted in multiple
-stable models of medical knowledge that are widely used by practitioners~\cite{gallego2013role,gallego2015bringing}.  The experience there
-is that large scale data collection is slow to conduct,
-difficult to aggregate, and the   results become out-dated  when  new treatments and conditions arise~\cite{gallego2013role}. 
-Further, studies that   generalize over many patients,
-may be irrelevant, given   the particulars of any specific single patient. 
-
-Hence,   within the evidence-based community,
-there are now rebel researchers who argue against large scale clinical
-trials and literature meta analysis. Instead they prefer
-{\em instance-based method} where every new test case results in a new query over the data~\cite{gallego2015bringing}.
-Instance-based method return treatment records from  similar patients with similar problems.
-Doctors can design treatments for the current patient by reflecting on what treatments
-did/ did not work within those records.
-
-It is insightful to contrast this approach with the bellwether method discussed above.
-The bellwether methods of \fig{xtree} are a {\em model-based method} where some model
-is generated from training data, then that model is applied to test data.
-As discussed above, the above bellwether methods produce models that are stable within a community.
- Instance-based methods, on the other hand, are highly  unstable since they change whenever a new test case is processed. 
-Hence, if assessed by the criteria of Section~2b, such instance-based  studies have many drawbacks 
-relating to {\em generality, trust, insight, training}, and {\em tool development}. 
-
-Nevertheless, if the instance-based
- methods out-perform   model-based methods, then we must (reluctantly) conclude that the best way to reason over 10,000+ projects is to add
-all   data into one data bucket, then search it for cohorts to specific projects.
-But before we can comparatively evaluate (a)~instance-based cohort methods versus 
-(b)~model-based bellwether methods, we have to first resolve   other  
-questions. 
-
+ 
 \noindent{\bf 3b. Systems Questions}  
  
-{\em RQ2: Can we find data on 10,000+ projects?} As discussed
-above, we foresee no problems with accessing this amount of data.
+The following systems-level research questions are not core theoretical
+issues. However, they do explore a set of
+important questions  that must be answered before doing anything else.
 
-\begin{wraptable}{r}{2.2in}
-{\small
-\begin{tabular}{p{2.1in}} 
-\rowcolor{gray!20}\begin{itemize}[leftmargin=*]
-\item
-No. of Commits $> 20$;
-\item
-No. of Issues $> 10$;
-\item
-\# programmers $> 8$;
-\item
-SW development only 
-\item Duration $> 50$ weeks;
-\item
-No. of Releases $> 0$; 
-\item
-Collaboration (\# pull requests) $> 0$
-\end{itemize} 
-\end{tabular}}
-\caption{These sanity checks  reduce the number of
-Github projects from $10^7$ to $10^4$.
-From~\cite{5,21,29}.}\label{tbl:sanity}
-\end{wraptable} 
-~{\em RQ3: Can we store and query that much information?}
+
+\textit{\textbf{ RQ2: Can we find data on 10,000+ projects?}} As discussed
+in our introduction, we see no problems with accessing  data\footnote{There are many
+important tricks required to download numerous projects from Github. Github limits the number of accesses to 5000 per hour per user token. In the past, we have created ``token pools'' from all researchers in our lab to increase that to 50,000 per hour.
+Another important trick is to temporarily
+``throttle back'' queries every hour or so 
+in order that the Github website demons do not incorrectly
+block us as a denial of service attack}. From those projects stored in Github, we can extract the information
+of Table~\ref{tab:metrics}.
+
+
+~\textit{\textbf{ RQ3: Can we store and query that much information?}}
 Storing and process all (say) Github's data would be a daunting
-systems-level task.  Fortunately, much of that data comes from   ``toy'' projects. Accordingly the research community has adopted a sets of standard ``sanity'' checks
-of \tbl{sanity} that  select the projects worth reporting~\cite{5,21,29}.  
+systems-level task.  Fortunately, much of that data comes from   ``toy'' projects. The research community has adopted a sets of standard ``sanity'' checks
+of  Table~\ref{tbl:sanity}   that  select the projects worth reporting~\cite{5069475,Kalliamvakou2014,Munaiah2017}.  
 Two important aspects of theses checks are that
 (a)~they can be performed using Github's API without
 first downloading the projects; (b)~only one-in-a-thousand projects satisfy these sanity
 checks. Hence we can handle the storage requirements
-for this project with standard desktop hardware, plus a few  hard drives\footnote{We estimate that storing relevant Github data from 10,000 projects will required 4-5 terabytes (a number small enough to be handled by standard desktop hardware and a few extra hard drives).} \footnote{There are other
-important tricks required to download numerous projects from Github. That site limits the number of accesses to 5000 per hour per user token. In the past, we have created ``token pools'' from all researchers in our lab to increase that to 50,000 per hour.
-Another important trick is to temporarily
-``throttle back'' queries every hour or so 
-in order that the Github website demons do not incorrectly
-block us as a denial of service attack}.
+for this project with standard desktop hardware, plus a few  hard drives\footnote{We estimate that storing relevant Github data from 10,000 projects will required 4-5 terabytes (a number small enough to be handled by standard desktop hardware and a few extra hard drives).}. 
 
 
 % [5]ChristianBird,PeterCRigby,EarlTBarr,DavidJHamilton,DanielMGerman, and Prem Devanbu. 2009. The promises and perils of mining git. In Mining Software Repositories, 2009. MSR’09. 6th IEEE International Working Conference on. IEEE, 1–10.
@@ -604,6 +710,9 @@ block us as a denial of service attack}.
 
 
 
+
+% \usepackage{multirow}
+
 \begin{table*}[!t]
 
 \caption{Featues that can be extracted from 10,000+ projects.
@@ -614,8 +723,8 @@ represent the indirect external manifestations of the internal ones.  }
 \centering
 \resizebox{1\linewidth}{!}{
 \begingroup\setlength{\fboxsep}{2pt}
-\colorbox{lgray}{%
-\scriptsize
+\colorbox{blue!10}{%
+\small
 \begin{tabular}{r|ll}
 \textbf{CATEGORIES}  & \multicolumn{1}{c}{\textit{\textbf{Internal attributes}}} & \multicolumn{1}{c}{\textit{\textbf{External attributes}}} \\ \hline
  \textit{\textbf{Products}} & \\ 
@@ -633,7 +742,7 @@ Etc & \dots & \dots \\  \hline
 \multirow{2}{*}{Detailed design} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}time, effort, number of specification faults found, \dots\end{tabular}} & \multirow{2}{*}{cost, cost-effectiveness, \dots} \\
  &  &  \\
 Testing & time, effort, number of coding faults found, \dots & cost, cost-effectiveness, stability, \dots \\
-Maintenance & \#bug reports, \#maintenance requests, \#enhancement requests,\ldots & extensibleness\dots\\
+Maintenance & \#bug reports, \#maintenance requests, \#enhancement requests,\ldots & extensibility\dots\\
             & \#issues open, \#issues closes, \#issue close time  \dots &   maintainability \dots \\
 Etc & \dots & \dots \\   \hline
 \textit{\textbf{Resources}} &  &  \\
@@ -649,63 +758,109 @@ Etc & \dots & \dots \\
 \endgroup}
 \end{table*}
 
-As to what specific data we would explore, that is determined by the tasks described above:
-\bi
-\item {\em Task1:} issue close time;
-\item  {\em Task2:} hero alerts (patterns of overcomits);
-\item {\em Task3:} Impact of different developer skills on software projects;
-\item {\em Task4:} Test case prioritization;
-\item  {\em Task5:} Unsupervised learning;
-\item  {\em Task6:} Defect prediction;
-\item  {\em Task7:} Next-month effort estimates;
-\item  {\em Task8:} Overall effort estimation;
-\item  {\em Task9:} Change planning.
-\ei
-Since they above tasks are  well-explored in the literature, we can (a)~use pre-existing experimental methods and evaluation criteria; and (b)~use  baseline results  from the literature to 
-assess   our new methods. 
-One reason to use these tasks is that 
-they cover a range of data types including (a) unstructured textual artifacts;  (b) metrics about human process and experience; (c) process metrics; as well as (d) traditional static code measures.
-Another reason to explore these tasks is that 
-they address
-issues raised by two recent surveys in the SE analytics community
-about  `questions that matter in SE''~\cite{Begel:2014,gupta2015identifying}.
-For example, XXXX
+
+
+% Another reason to use these tasks is that 
+% they cover a range of data types including (a) unstructured textual artifacts;  (b) metrics about human process and experience; (c) process metrics; as well as (d) traditional static code measures.
+
+\begin{wraptable}{r}{2.3in}
+{\small
+\begin{tabular}{|p{2.1in}|}\hline 
+\rowcolor{blue!10}\begin{itemize}[leftmargin=*]
+\item
+No. of Commits $> 20$;
+\item
+No. of Issues $> 10$;
+\item
+\# programmers $> 8$;
+\item
+SW development only 
+\item Duration $> 50$ weeks;
+\item
+No. of Releases $> 0$; 
+\item
+Collaboration (\# pull requests) $> 0$
+\end{itemize} \\\hline
+\end{tabular}}
+\caption{These sanity checks  reduce the number of
+Github projects from $10^7$ to $10^4$.
+From~\cite{5069475,Kalliamvakou2014,Munaiah2017}.}\label{tbl:sanity}
+\end{wraptable} As to what specific data we would explore, that is determined by the example software analytics tasks 
+explored by this research.  Initially, we would start with the nine tasks  of Table~\ref{tasks} (and move on to others if time permits).
 
 
 
-
-
-
-
-~\noindent{\em RQ4: Can we ensure data quality over so many projects?} Consider the old adage: ``garbage in, garbage our`` . In the context of this proposal, this quote is 
-very pertinent. There are many ways to make mistakes when learning from 10,000+ projects
+\noindent\textit{\textbf{RQ4: Can we ensure data quality over so many projects?}}  There are many ways to make mistakes when learning from 10,000+ projects
 (e.g. see some examples  in \tbl{ohshit}).
 \begin{table}[!t]
-\caption{A small sample of the kinds of errors novices make when processing larage data dumps from Github. This list is hardly complete and researchers exploring large Github data dumps need to maintain and extend their own list of ``bad smell'' detectors showing what errors were made before, and how to avoid them in the future. }\label{tbl:ohshit}
-\begin{tabular}{p{.95\linewidth}} 
-\rowcolor{gray!20}
-{\small \begin{itemize} 
+\caption{A small sample of the kinds of errors novices make when processing large data dumps from Github. This list is hardly complete and researchers exploring large Github data dumps need to maintain and extend their own list of ``bad smell'' detectors showing what errors were made before, and how to avoid them in the future. }\label{tbl:ohshit}
+{\small \begin{tabular}{|p{.45\linewidth}p{.50\linewidth}|}\hline
+\rowcolor{blue!10}
+\centering \textbf{"Bad Smell"} & \multicolumn{1}{c}{\textbf{"Bad Smell" Manager}} \\ \hline
+\rowcolor{white!10}
+  \begin{itemize} 
 \item
-Using projects that violate the sanity checks of \tbl{sanity}.
+Using projects that violate the sanity checks of Table~\ref{tbl:sanity};
+\end{itemize} &   \begin{itemize} 
+\item
+Enforcing sanity check rules of Table~\ref{tbl:sanity} when selecting projects and  Collecting the project metadata for spot checks;
+\end{itemize} \\
+
+\rowcolor{blue!10}
+\small \begin{itemize} 
 \item
 Not noticing rows with identical values;
+\end{itemize} & \begin{itemize} 
 \item
-Not noticing  data cells with impossibly
-large values;
+database de-duplicating;
+\end{itemize} \\
+
+\rowcolor{white!10}
+\small \begin{itemize} 
+\item
+Not noticing  data cells with impossibly large values;
+\end{itemize} & \begin{itemize} 
+\item
+Use a validator class to validate values with its expected range and flag project if abnormality found;
+\end{itemize} \\
+
+\rowcolor{blue!10}
+\small \begin{itemize} 
 \item
 Forgetting to process the non-master branches;
+\end{itemize} & \begin{itemize} 
 \item
-Incorrectly aggregating the data. Certain Github labels have different meanings to different developers. E.g. {\em high severity} can actually mean ``the thing I am most willing to fix next''.
+Use of parity checker for comparing commit counts of master brunch and collected data;
+\end{itemize} \\
+
+\rowcolor{white!10}
+\small \begin{itemize} 
 \item
-Applying a classification learner to data sets with numeric classes;
+Incorrectly aggregating the data. Certain Github labels have different meanings to different developers. E.g. {\em high severity} can actually mean ``the thing I am most willing to fix next'';
+\end{itemize} & \begin{itemize} 
 \item
-Applying a learner that assumes discrete data (e.g. APRIORI).
-to columns of numeric data; 
+Use of a Natural language based system to convert the labels to a set of approved generic labels;
+\end{itemize} \\
+
+\rowcolor{blue!10}
+\small \begin{itemize} 
 \item
-Applying the training and test procedures  to the same data
-(which grossly can {\em over-estimate} the performance of that learner on future data).
-\end{itemize}} 
-\end{tabular}
+Considering configuration file changes as part of enhancement or bug fix code changes;
+\end{itemize} & \begin{itemize} 
+\item
+Use rollback mechanism to delete partial data when job fails and proper logging mechanism to identify failed projects;
+\end{itemize} \\
+
+\rowcolor{white!10}
+\small \begin{itemize} 
+\item
+Not separating pull requests from issues in github;
+\end{itemize} & \begin{itemize} 
+\item
+Checking for pull request id in issues, to separate pull requests from issues;
+\end{itemize} \\\hline
+
+\end{tabular}}
 \end{table}
 How avoid such errors? Also,  if such mistakes are detected, how to
 ensure they are not ever made again?
@@ -715,17 +870,18 @@ so we will  adopt a policy of
 \item
 Stochastic spot checks; and 
 \item
+%XXX anomaliy detectors. initlize from other doamins (the shepperd 8)
 Libraries of bad smell detectors.
 \ei
-Stochastic spot checks is the process of pausing the normal
-work flow and manually inspecting a (very small) randomly selected part of the data  generate from Github. The point of these spot checks is  reaching the  ``hmmm... that's funny'' moment where the engineering finds some ``bad smell'' in the data (see \tbl{ohshit}).  Finding ``bad smells'' should prompt
+Stochastic spot checking is the process of pausing the normal
+work flow and manually inspecting a (very small) randomly selected part of the data  generate from (e.g.) Github. The point of these spot checks is  reaching the  ``hey... that's strange...'' moment where an  engineer finds some ``bad smell'' in the data (see \tbl{ohshit}).  Finding ``bad smells'' should prompt
 (a)~bug
-fixes to the data pre-processing scripts;  (b)~recollection of the damages data;
+fixes to the data pre-processing scripts;  (b)~recollection of the damaged data;
 (c)~the creation of an  bad smell ``demon'' that checks for this  error  in all
 future processing.
 
-Depending on the nature of the bad smell, some of these demons can be automated (e.g. using natural language sentiment analysis to recognize
-the actual bug reports~\cite{someReference}) while some of them are manual
+Depending on the nature of the bad smell, some of these demons can be automated (e.g. using text mining to recognize
+the actual bug reports~\cite{Yu18q}) while some of them are manual
 (e.g. during code inspections, run over a checklist of common errors). 
 However they are implemented, they can be used
 to collect some insightful  statistics.
@@ -745,39 +901,36 @@ processing environment of 10,000+ projects:
  
 
 \noindent{\bf 3c. Technology Questions}
-Note that, strictly  speaking, the above   systems questions  are not research issues-- but they are important matters   that must be addressed before exploring
-our {\em technology questions}.
-
-
-~{\em RQ5: How to Finding Communities?} In the above studies, determining the {\em community} of related projects for the bellwether methods was performed manually by   subject matter experts. Scaling bellwethers to 10,000+ projects will need  clustering methods for finding  communities. Once such clusters are known then all subsequent reasoning can be constrained to just within individual clusters.
+ 
+\textit{\textbf{RQ5: How to Find Communities?}} In our previous
+work on bellwethers~\cite{KrishnaMF16,krishna2018bellwethers},  determining the {\em community} of related projects for the bellwether methods was performed manually by   subject matter experts. Scaling bellwethers to 10,000+ projects will need  clustering methods for finding  communities. Once such clusters are known then all subsequent reasoning can be constrained to just within individual clusters.
 
 There are many ways to cluster software data.
 One way is via {\em artifact type clustering}; i.e assume that similar projects produce similar artifacts. For example, we might separate our projects that have class-level data  versus those that do not.
 It might even be useful to cluster based on main development language (so cluster C++ projects separate to Java projects).
-
 While artifact type clustering is simple, our expectation that is that it would be insufficient to capture all the nuances of 10,000+ projects.
 Hence, we need to augment artifact type clustering with other methods. 
 
 One other method  is to use 
 {\em manual stratifications} e.g. as discussed on page one of this proposal,
-Petersen and Wohlin~\cite{petersen} divides software into 100s of groups according to their different types of product, process, practices, people, development organizations, and target markets. While we agree
+Petersen and Wohlin~\cite{Petersen2009} divides software into 100s of groups according to their different types of product, process, practices, people, development organizations, and target markets. While we agree
 with their central intuition (that there many different kinds of projects that deserve different models), they present no evidence that their manual stratifications are ``best'' in some manner.
 For example, 
 Clark and Madachy~\cite{clark15} divided their software projects in a very manner to
-that of  Petersen and Wohlin~\cite{petersen}.
+that of  Petersen and Wohlin~\cite{Petersen2009}.
 
 In our research, we have found that models learned from automatic clustering methods
-perform better than those from manual stratifications~\cite{meTSE06,meTSE12lcoalglobal}.
+perform better than those from manual stratifications~\cite{me06a,Menzies2012}.
 Hence, we will eschew manual stratifications and explore automatic clustering methods
 using a vector space representation (VSR) of the data.
-Given $F$ features extracted by joining across Github data, we would create tables of data, one per project. Each row of those tables is a vector describing  one specific artifact with the projects (e.g. a function, a class, or a file). For this proposal, clustering means find similar projects; i.e. those with similar vectors.
+Given $F$ features extracted by joining across (e.g.) Github data, we would create tables of data, one per project. Each row of those tables is a vector describing  one specific artifact with the projects (e.g. a function, a class, or a file). For this proposal, clustering means find similar projects; i.e. those with similar vectors.
 
 
 In prior work,
 we have had much success with
    clustering software data using techniques 
-such as k-means~\cite{suvodeepMSR18} or 
- the pseudo-labelling method of He et al.~\cite{hemenziesESEM13}.  In the latter, data from different projects are labeled P1,P2, etc and for each pair $P_i,P_j$ a classifier is built.
+such as k-means~\cite{majumder18} or 
+ the pseudo-labelling method of He et al.~\cite{he2013learning}.  In the latter, data from different projects are labeled P1,P2, etc and for each pair $P_i,P_j$ a classifier is built.
 The accuracy of this classifier is a measure of the distance between  $P_i,P_j$  (the larger
 the error, the more similar and hence the closer the projects).   These distances could then be used by some other clustering methods. 
 
@@ -805,7 +958,7 @@ there are many ways we might find the communities (and some of those methods are
 
  
 
-~{\em  RQ6: How to Scale?} The bellwether method's search for  has to be optimized
+\textit{\textbf{ RQ6: How to Scale?}} The bellwether method's search for  has to be optimized
 before we dare try to scale the bellwether method to 10,000+ projects. This search cost has two components: (a)~find the communities then (b)~search within those communities for the bellwether. A naive search for the  communities that explores all subsets of projects
   takes time $O(2^P)$   and   $O(lc^2)$,  respectively, where $P$ are the number of projects; $c$ is the size of the community and $l$ is the cost
   of running the learner across the pairs of projects within a community.
@@ -820,7 +973,7 @@ There are many ways we might do this.
 Firstly, we could use instance selection methods~\cite{song2017efficient} to reduce the size of the data presented to the learners.
 Such instance selectors find {\em prototypes} where are exemplar vectors that can ``stand-in'' for dozens of other 
 vectors. For example, we could apply locality sensitive hashing recursively within each bin and  then just keep
-a few vectors per bin. Alternatively, we could use Peters' linear time LeaF algorithm algorithm~\cite{petersLace2Icse15} 
+a few vectors per bin. Alternatively, we could use Peters' linear time LeaF algorithm algorithm~\cite{peters2015lace2} 
 that builds an an anomaly detector from a small number of vectors, then streams over the rest
 of the data, marking as ``interesting'' any other is is anomalous (i.e. that kind of vector has not been seen before).
 In practice, LeaF marks just  5-20\% of the vectors as ``interesting'' and worthy of subsequent exploration with a learner. 
@@ -841,7 +994,7 @@ not degrading the performance of the transfer learners (for learner performance 
 % When transferring data between many projects, there is sometimes a need for
 %  heterogeneous transfer learning~\cite{nam2017heterogeneous}; e.g.  realizing that that feature  ``X'' in project1 is effectively the same as feature ``Y'' in project2. Learning such {\em heterogenous transforms} is problematic for 10,000+ projects. To address this problem, this research will  constrain heterogeneous transfer  to just the attributes mentioned in BELLTREE's recommendations (which, as mentioned above, make use of very few features).  
 
-~{\em RQ7: How to tame tuning complexity?} As software analytics gets more complex (e.g. deep learning~\cite{weFSE17}, spectral learning~\cite{vivekEMSE}), it becomes
+\textit{\textbf{ RQ7: How to tame tuning complexity?}} As software analytics gets more complex (e.g. deep learning~\cite{fu17}, spectral learning~\cite{Wang:2016,nair2017faster}), it becomes
 harder and slower to test many methods on many data sets.
 Worse yet, many recent results have demonstrated the value of tuning
 a learners default parameters~\cite{agrawal17,agrawal2018wrong,Tantithamthavorn18,fu2016tuning} before apply those learners to software engineering data.
@@ -849,6 +1002,7 @@ That is, in the near future, it will be required standard scientific
 practice to tune learners before any results can be reported from that study.
 
  
+
 The problem with tuning is that it is expensive.
 Using 
 some
@@ -858,9 +1012,8 @@ we have had much success with faster methods for hyperparamter optimization, the
 
 
 \begin{wrapfigure}{r}{1.4in}
-    \includegraphics[width=1.4in]{figs/f1.png}  \caption{Performance improvements seen in 17 defect prediction data sets after   hyper-parameter optimization.}\label{fig:tuned}
-\end{wrapfigure}Recently, the PIs of this proposal have had much success  with   ``hyper-
-parameter optimizatiers'' that automatically determine which learner to use, and what settings to apply to those learners~\cite{fu2016tuning,chen2017riot,nair2017flash,agrawal2017better,agrawal2017better,fu2017revisiting,nair2017using,mathew2017shorter,nair2017faster,chen2017beyond,nair2016accidental,fu2016differential,chen2016sampling,agrawal2016wrong,agrawal2018better}.
+    \includegraphics[width=1.4in]{figs/f1.png}  \caption{Performance improvements seen in 17 defect prediction data sets after   hyperparameter optimization.}\label{fig:tuned}
+\end{wrapfigure}Recently, the PIs of this proposal have had much success  with   ``hyperparameter optimizatiers'' that automatically determine which learner to use, and what settings to apply to those learners~\cite{fu2016tuning,chen2017riot,nair2017flash,agrawal17,fu2017revisiting,nair2017faster,mathew2017shorter,nair2017faster,chen2017beyond,nair2016accidental,fu2016tuning,agrawal2018wrong,agrawal17}.
 As seen in  Figure~\ref{fig:tuned}, this can   significantly improve learner performance. That figure shows the  improvements found by Fu and PI Menzies
 can after a hyperparameter optimizer adjusted the control
  parameters of data miners~\cite{fu2016tuning}. The x-axis of that figure shows results from 17 different data sets. The y-axis shows the delta 
@@ -868,6 +1021,7 @@ can after a hyperparameter optimizer adjusted the control
 learners: CART, Random Forest, and WHERE.
 Note that in half those data sets, hyper-parameter optimization
 resulted in positive, and sometimes very large improvements.
+
 
 This proposal will explore Sequential Model-Based Optimization~\cite{Bergstra:2011} for both speeding up learnes and speeding
 up hyperparamter optimization.
@@ -889,7 +1043,10 @@ $N \gg n$ parameter settings.
 In our own SMO  experiments with defect prediction and configuring video encoding software, we have used $b=50,n=20, N=1000$, and the CART
 decision tree learner to learn the surrogates~\cite{nair18tse}. Since we were trying to minimize the error in predictions,
 our {\em selection function} was to use the example that generated largest predictions.
-For learning from 10,000+ projects, SMO has much to recommend it:
+
+Our previous work~\cite{nair18tse} applied SMO to only a handful
+of projects. Nevertheless, there are many reasons to believe
+that SMO can be useful applied to   larger samples:
 \bi
 \item
 Most of the reasoning is done using the surrogate, which is much faster than actually running the data miners with different settings.
@@ -898,22 +1055,44 @@ Most of the reasoning is done using the surrogate, which is much faster than act
 The parameter settings found in this way could be used to assist in the clustering problem described above. In 2013, we showed that it was possible to cluster data based on performance scored earned from data miners; i.e. similar data sets respond well to the same kinds of data miners~\cite{he13}. Hence if run SMO on all projects, then we can constrain clustering to just those projects that have similar learner parameter tunings.
 \item
 Using {\em reservoir sampling}\cite{Vitter:1985}, 
-SMOs can   stream over an infinite stream of data. That is  in step8, at probability $(1/n)^p)$ replace old items in the archive
+SMOs can   stream over an infinite stream of data. That is  in step8, at probability $(1/n)^p$ replace old items in the archive
 with new information.  In this way, the memory requirements for processing long temporal streams of data can be reduced. Note that
 by using $p<1$, we can learn to favor more recent examples over past examples.
 \item
-This approach can easily extended to multiple goals as follows: in step4, build one surrogate model for each different goal (we applied that approach, with much success, in a TSE'18 paper~\cite{nair18}). For example, we could tune data miners to {\em maximize}   precision,
+This approach can easily extended to multiple goals as follows: in step4, build one surrogate model for each different goal (we applied that approach, with much success, in a TSE'18 paper~\cite{nair18tse}). For example, we could tune data miners to {\em maximize}   precision,
 {\em maximize} recall,  while at the same time {\em minimize} the size of the generated model
 and {\em minimize} learner training time. That is, we could learn how to quickly find succinct, useful models.
 Note that this would address the $l$ cost discussed in {\em RQ6}.
 \item
 Once we can support SMOs and stream mining, we can run over very large temporal samples of SE data to learn when older models need to be replaced with new models. 
 \ei
+Note that much of the above list has yet to be tests on more than 10 to 100 projects. The only way to test if these methods scale to 10,000+ projects is to try to do so. Hence, this project.
+
+\textit{\textbf{ RQ8: How to Translate Between Projects?}}
+Suppose we successfully scale up our methods to 10,000+ projects. 
+The data collection process in all those projects might be different, which
+means that similar data might be collected under different
+names in different projects. This is the  {\em heterogeneous transfer
+learning problem}; i.e. how find relevant data from one project, even if that data has different names to the current
+project.
+
+In TSE'17~\cite{nam2017heterogeneous},
+we have had much success with heterogeneous transfer learning.
+Using the  Kolmogorov-Smirnov Test, we can detect attributes with similar distributions but
+different names. After matching across such similar attributes, we found that
+we can transfer data between projects that collect data using different names.
+
+Of course, that work only attempted heterogeneous transfer between a handful of projects.
+This research will have to test if that an open issue whether or not that approach
+works for 10,000+ projects.
+Clearly, what is required is some very fast preprocessor that suggests 
+if it might be worthwhile considering transferring attributes between
+two projects $P_1,P_2$ with different data names. We have tentative ideas in that direction.
 
 
-\noindent{\bf 3d. RQ8: How to Evaluate? }
+\noindent{\bf 3c.  Evaluation Questions }
 
-{\em RQ8a: What Performance Scores? }To evaluate the above, we will apply the evaluation criteria defined in papers that explored {\em Task1} to {\em Task9}. That
+\textit{\textbf{ RQ9a: What Performance Scores? }}To evaluate the above, we will apply the evaluation criteria defined in papers that explored {\em Task1} to {\em Task9}. That
 criteria is many and varied. For example:
 \bi
 \item
@@ -938,18 +1117,13 @@ recently become a standard test in software analytics~\cite{Gh15}.
 
 After from that, there are number other important evaluation principles for this research:
 
-{\em RQ8b: Beyond Decision Trees?}
+\textit{\textbf{RQ9b: Beyond Decision Trees?}}
 The above discussion assumed that models were generated by decision trees learned from bellwethers within a community. That approach has the advantage of generating succinct, easily readable models.  There are any other ways to generate such models (bayes nets~\cite{misirli2014bayesian}, 
 rule generation algorithms like RIPPER~\cite{cohen1999simple} and FFTrees~\cite{chen2018applications}; etc) and the best model generation method
 must be explored as part of this evaluation task.
 
-{\em RQ8c: Do Models Matters?} as discussed in {\em RQ1}, we need to check if  instance-based queries   over data performs much better
-than models generated from bellwethers (like \fig{xtree}b).
-If so, then   irregardless of the  issues listed in Section~2b (generality,
-trust, insight, training and tool development), we would have to endorse
-instance-based methods studies (and their associated conclusion instability).
 
-{\em RQ8d: Is Volume Possible?} We need to test if our methods
+\textit{\textbf{RQ9c: Is Volume Possible?}} We need to test if our methods
 can find, then ingest, then process data from  10,000+ projects. We would have to doubt the practicality of that scale up if:
 \bi
 \item We cannot find enough data (discussed in {\em RQ2}).
@@ -959,7 +1133,7 @@ can find, then ingest, then process data from  10,000+ projects. We would have t
 \item We cannot find communities (discussed in {\em RQ5}); i.e. the performance of  models learned from  clusters
  is no different to models learned from the entire data.
  \item The inference time (discussed in {\em RQ7}) is too slow (we would seek answers in minute to hours, not days to weeks);
-\item Hyper-parameter optimization (discussed in {\em RQ7}) became to burdensome.
+\item Hyperparameter optimization (discussed in {\em RQ7}) became overly burdensome.
 For example, standard hyper-parameter optimizers using evolutionary
 algorithms required thousands to millions of evaluations~\cite{sarro2016multi}. 
 On the other hand,
@@ -968,7 +1142,7 @@ the SMO methods described in {\em RQ7} terminate after a few dozen evaluations (
 \item The streaming learners  discussed in {\em RQ7} cannot recognize when
 old models need to be replaced with new models (which would be witnessed by a steady decline in performance as the reasoning continues across a long stream of data).
 \ei
-{\em RQ8e: Does Volume Matter?} i.e. does {\em more}
+\textit{\textbf{ RQ9d: Does Volume Matter?}} i.e. does {\em more}
 data means {\em better} predictor (where ``better'' is some domain-specific predicate discussed in our first point). To address this question, all our evaluations must be performed on 10000+ projects,
 then 5000, 2500, 1250, 600, 300, 150, 80, 40, 20, 10  projects (selected at random).
 We would reject the premise of this proposal (that it is useful to learn from 10,000+ projects)
@@ -976,30 +1150,77 @@ if models learned from (say) 20 projects do just as well as those learned from (
 
 
 
-{\em RQ8f: Does This Work for Future Data?}
+\textit{\textbf{ RQ9e: Does This Work for Future Data?}}
 it is important to apply our evaluation to both historical  {\em and } new data.
 While verification of past data is useful, the real test for our methods is how well
 it works on {\em new} data. That is, in order to demonstrate the external validity of our methods, we will watch for new releases of the projects we are studying. When such new releases occur, we will apply our current models to those new releases. This will demonstrate the value (or otherwise) of our models on new data.
  
+\textit{\textbf{ RQ9f: Do Models Matters?}} To explain this evaluation question,
+we  first must distinguish between {\em model-based methods}
+and {\em instance-based methods} for reasoning from 10,000+ projects.
+
+As stated in the introduction (when we discussed Figure~\ref{results},
+ the key measure to observe from this proposal is  how large are the communities found by our transfer
+ learning methods. 
+Hopefully, we will find large communities with SE projects within which there are a general
+ models of SE best practices that apply to many projects.
+
+ But of course,    that might not happen. It is possible that we will find that our 10,000+ projects
+ must be divided into hundreds of small communities, each of which having wildly different models. 
+ 
+ To understand the implications of this project finding thousands of tiny communities amongst our 10,000+ projects,
+    we  can look at a related field.
+Decades of research on {\em evidence-based medical reasoning}  has not resulted in multiple
+stable models of medical knowledge that are widely used by practitioners~\cite{gallego2013role,gallego2015bringing}.  The experience there
+is that large-scale data collection is slow to conduct,
+difficult to aggregate, and the   results become out-dated  when  new treatments and conditions arise~\cite{gallego2013role}. 
+Further, studies that   generalize over many patients,
+may be irrelevant, given   the particulars of any specific single patient. 
+Hence,   within the evidence-based community,
+there are now rebel researchers who argue against large-scale clinical
+trials and literature meta analysis. Instead they prefer
+{\em instance-based methods} where every new test case results in a new query over the data~\cite{gallego2015bringing}.
+Instance-based method return treatment records from  similar patients with similar problems.
+Doctors can design treatments for the current patient by reflecting on what treatments
+did/ did not work within those records.
+
+It is insightful to contrast this approach with the bellwether method discussed above.
+The bellwether methods   are a {\em model-based method} where some model
+is generated from training data, then that model is applied to test data.
+As discussed above, the above bellwether methods produce models that are stable within a community.
+
+If we find finding thousands of tiny communities amongst our 10,000+ projects,
+then instance-based method would be most appropriate for SE data.
+ Instance-based methods, are highly  unstable since their results change whenever a new test case is processed. 
+Hopefully, this project will not endorse instance-based methods since, 
+if assessed by the criteria of  Table~\ref{tbl:why}, such instance-based  studies have many drawbacks 
+relating to {\em generality, trust, insight, training}, and {\em tool development}. 
+
+
+
 
 \head{4. RESEARCH PLAN}
 This grant will fund two graduate students (G1, G2) who will work full time on this proposal.
 Over our three year grant, these students will work as follows. 
 
-XXXX need rq1 somewhere
+ 
 
 \begin{center} 
-{\footnotesize \begin{tabular}{r|r|c|c|ccc}\hline
-\rowcolor{gray!20}&       &                          & Research & & &\\
-\rowcolor{gray!20}Id&What  &                      Who &  Questions    &     Year1 &Year2& Year3\\\hline
+{\footnotesize \begin{tabular}{r|p{2in}|c|c|ccc}\hline
+\rowcolor{blue!10}&       &                          & Research & & &\\
+\rowcolor{blue!10}Id&What  &                      Who &  Questions    &     Year1 &Year2& Year3\\\hline
 1&Collect eval criteria (from the literature)& G1,G2&RQ8 &     \CheckmarkBold\\
-\rowcolor{gray!20}2&Data collection&G1 &   RQ2,RQ3,RQ4               &     \CheckmarkBold&&\\
+\rowcolor{blue!10}2&Data collection&G1 &   RQ2,RQ3,RQ4               &     \CheckmarkBold&&\\
 3&Technology construction   &  G2 &   RQ5          &      \CheckmarkBold\\
-\rowcolor{gray!20}4&Scale up                  &  G1 &   RQ6         &          &    \CheckmarkBold&\\
+\rowcolor{blue!10}4&Scale up                  &  G1 &   RQ6         &          &    \CheckmarkBold&\\
 5&Hyperparameter optimization& G2 &   RQ7         &          &    \CheckmarkBold\\
-\rowcolor{gray!20}6&Evaluation (on old data)   & G1,G2& RQ8         &       \CheckmarkBold  &  \CheckmarkBold  &  \CheckmarkBold\\
-7&Evaluation (on new data)   & G1,G2& RQ8          &           &     &  \CheckmarkBold\\
-\rowcolor{gray!20}8& Community support         & G1,G2 &          & \CheckmarkBold  &  \CheckmarkBold  &  \CheckmarkBold\\\hline
+\rowcolor{blue!10}6 &Hetrogenous transfer learning &G1,G2&  RQ8&     &     \CheckmarkBold&\\
+7&Evaluation (on old data)   & G1,G2& RQ9         &       \CheckmarkBold  &  \CheckmarkBold  &  \CheckmarkBold\\
+\rowcolor{blue!10}8&Evaluation (on new data)   & G1,G2& RQ9          &           &     &  \CheckmarkBold\\
+ 
+9 & Can ``mega-transfer'' learning between 10,000+ project generate better,  more insightful,  models? & G1,G2 & RQ1 & & & \CheckmarkBold\\
+\rowcolor{blue!10}10& Community support         & G1,G2 &          & \CheckmarkBold  &  \CheckmarkBold  &  \CheckmarkBold\\\hline
+
 \end{tabular}}
 \end{center}         
 
@@ -1009,28 +1230,32 @@ Note that {\em Evaluation} breaks into two sections:
 \item {\em Evaluation (on old data)} is a task that will be on-going throughout this project;
 \item But {\em Evaluation (on new data)} is a task that has to wait till the end (since we will need new data from the projects that we are monitoring)
 \ei
-All along this plan, research results can be written:
+Note also that the the main RQ1 of this project will be addressed at the end of the grant.
+
+Note further that all along this plan, research results can be written:
 \bi
 \item In Year1, we can report on quality operators for ingesting large data set
 \item In Year2, we can report or on scale-up methods for large scale analytics;
 \item In Year3, we can report (hopefully) on what kinds of models hold for most data;
 \item In all years, we can report results where new methods are applied to old data sets (hopefully to generate new and better and more interesting results); 
 \ei
-As to the last item ({\em Community Support}), 
+As to the  last item ({\em Community Support}), 
 in all our work, we  publish papers along with reproduction packages containing all the data and scripts needed to replicate
-that paper. This work will continue that tradition (for more on this point, see {\bf 7.4. Dissemination of Knowledge}, below).
+that paper. This work will continue that tradition (for more on this point, see {\bf 8.4. Dissemination of Knowledge}, below).
   In practice, this means that some part of our time will be required for {\em Community Support} to help other research teams boot and run our scripts.
 
-\head{6. RELATED WORK}
+ 
+
+\head{7. RELATED WORK}
 
 Need numbers of this: a quick survey. Yet  a  typical research paper in software analytics studies less than a few dozen projects (exceptions: see [?]).
 
 
-Boa: mostly for searching abstract syntax tres 
+\textbf{Boa}: It is large scale code repository storing almost 700.000+ projects with a support of domain specific language named boa. This repository mostly supports queries related to source code analysis, which provides only a fraction of data that we need.
 
-GhTorrent
+\textbf{GhTorrent}: It is a data repository from Github, created using Github API and stored in a relational database. GhTorrent stores the data in without doing any processing. So there is no relation between issues, commits, committed files. Although the datas are present in somewhat similar format, to make those inferences we would need to mine Github again, thus making it a duplicating cumbersome process to integrate data from different sources.
 
-cmu does mega learning but for specific problems. tthe general issue of the emrits of elarning from so much data is still unknown
+\textbf{BugSwarm}: It is a repository for reproducible software bugs and and fixes with the help of large scale software mining. This repository is focused on reproducible bugs in software repository and their fixes,which will help in research in automated patch or code change related research. These data repository doesn't help us to achieve the tasks that we want to explore as part of this research.
 
 
 % \input{tex/antipatterns.tex}

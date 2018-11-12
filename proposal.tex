@@ -1,4 +1,9 @@
-\documentclass[11pt,letterpaper]{article}
+\documentclass[10pt,letterpaper]{article}
+
+  \usepackage[T1]{fontenc} 
+    \usepackage{textcomp} 
+   \usepackage{mathpazo} 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagestyle{plain}                                                      %%
@@ -37,8 +42,7 @@
 \usepackage{enumerate}
 \usepackage{amsmath}
 \usepackage{subfigure}
-\usepackage{wrapfig}
-\usepackage{times}
+\usepackage{wrapfig} 
 \usepackage{tabularx}
 \usepackage{ifthen}
 \usepackage{xspace}
@@ -54,7 +58,7 @@
 \usepackage[compact]{titlesec}
 \usepackage[T1]{fontenc}
 \usepackage[latin1]{inputenc}
-\usepackage[table]{xcolor}
+\usepackage[table,dvipsnames]{xcolor}
 \newcommand{\TODO}[1]{{\it \color{blue}\{TODO: #1\}}}
 
 \usepackage{titlesec}
@@ -80,7 +84,7 @@
 \newcommand\emh[1]{\nb{EMH}{#1}}
 \newcommand\myTitle{\newpage
 \begin{center}
-{\bf SHF:Small: Mega-Transfer: Learning from 10,000+ Software Projects}\\
+{\bf SHF:Small: Mega-Transfer: On the Value of Learning from 10,000+ Software Projects}\\
 Tim Menzies (North Carolina State University)
 \end{center}}
 
@@ -148,37 +152,42 @@ Tim Menzies (North Carolina State University)
 
 \head{Overview:}
 Software analytics is a workflow that distills large amounts of low-value data into small chunks of very high-value data. 
-What are the implications of big data for software analytics? Currently, researchers have ready access to 10,000+ projects. 
-Using all that data, can we learn better models for software quality?  Or is learning from so much big data in software engineering inherently so confusing that no general models can be found?
-Currently, there are no answers to these questions in the field of software engineering.  The experience in other fields is that the
-{\em more} training data,  the {\em better} the learned model. This effect has yet to be seen in software engineering,
-but that might just mean we have yet to use enough training data (hence, this proposal).
+After a decade of intensive software analytics, what have we learned? While that work has generated many specific results about many specific projects,
+it has failed (so far) to deliver general principles that are demonstrably useful across many projects. 
+Is that good enough? Surely we can do better than that,  given the ready availability much software project and  the scalablility of automated analytics.
 
-In this research, we will test for   better software analytics
-via ``mega-transfer''; i.e. searching  10,000+ software projects for lessons learned that are relevant to particular projects.
-Mega-transfer will  be tested on 10,000+  of software projects monitored inside public code repositories (e.g. Github) and commercial cloud platform 
-like those run in  the Raleigh Research Triangle,  North Carolina.  
-That cloud-based DevOps tool build, runs, and deploys, code written in Java, Node.js, Go, PHP, Swift, Python, Ruby Sinatra,Ruby on Rails (and is extensible to other languages). It is is used regularly by 100,000+ developers working on 1600 live projects.
+One possible explanation for the limited conclusions (so far) from automated analytics is  {\em how much} data we are using in the analysis. 
+A typical research paper in software analytics studies less than a few dozen projects.  Such small samples can never be
+representative of something as diverse as software engineering
+Perhaps it is   time to stop making 
+limited conclusions from tiny sets of 
+software projects.
 
 
-The research  will ask and answer the question:
+To find general conclusions in SE, we propose learning from a much larger corpus than ever used before (10,000+ projects). To that end,
+we propose  innovative {\em transfer learning}
+methods based on  very fast clustering and transfer learners based on very fast stream mining algorithms that use incremental hyperparameter optimizers.  With these innovations, we will explore
+1500+ commercial projects maintained by our industrial colleagues at Raleigh's Research Triangle;
+as well as the 10,000+ projects currently available from Github.
+Using this data, we  will ask and answer the question:
 \begin{center}
-{\em Can mega-transfer learning  between 10,000+ project generate better, more insightful, models?}
+{\bf RQ1:} {\em Can ``mega-transfer'' learning  between 10,000+ project generate better, more insightful, models?}
 \end{center}
- 
 In order to demonstrate the external validity of our methods, we will watch for new releases of the projects we are studying. When such new releases occur, we will apply our current models to those new releases. This will demonstrate the value (or otherwise) of our models on new data.
 
 
 \head{Intellectual Merit:} 
-  In this era of big data, it is timely to ask ``when is enough data, enough?''.
-Within all the current industrial focus on industrial big data methods, there is very
-little discussion on the value (or otherwise) of using all the available data.
-Given the diversity of software projects, accessing more data means accessing data from a diverse range of different projects. 
-That is, there might be limits to the big data advantage in SE since,  as we look at more and more data, we are not sampling more items from the {\em same } population. This might mean that software analytics needs to set limits on how much data it uses to make conclusions.
+This paper tests the value of ``big data'' for software engineering. Is it worthwhile collecting and reasoning about large numbers of SE projects? 
+Are there general principles we can use to guide project management, software standards, education,tool development, and legislation about software? Or is software engineering some ``patchwork quilt'' of ideas and methods where it only makes sense to reason about specific, specialized, and small sets of related projects?
 
-
-More generally, we ask are there general models of SE that apply to a wide range of projects? Or should all projects be treated as unique entities
-that require unique treatments? Note that the latter conclusion would imply a limit to theory development in software engineering.
+This is an important question.
+  Data science for software engineering
+cannot be called a ``science'' unless
+it makes general conclusions that hold across
+multiple projects. Hence,  software analytics will never become a data ``science''
+unless its  conclusions hold across a large space of projects. 
+Accordingly, we test if there are general models of SE that apply to a wide range of projects.  
+We also  propose and comparatively evaluate  methods designed for the situation where   such general models do not exist.
  
 
 \head{Broader Impacts:}
@@ -188,7 +197,7 @@ As a result, this work will increase America's ability for industrial and academ
 more scientific studies via computational means.  
  
 
- The PI teaches senior-level and graduate-level SE, and data mining classes (and in those data mining classes, all the case studies come from software engineering).  All of the technology developed in this proposal will become case study material for those subjects.   The PI will continue his established tradition of graduating  research  students  for  historically  under-represented  groups.   Also, this work will inform the curriculum of the PI's annual
+Also, the PI teaches senior-level and graduate-level SE, and data mining classes (and in those data mining classes, all the case studies come from software engineering).  All of the technology developed in this proposal will become case study material for those subjects.   The PI will continue his established tradition of graduating  research  students  for  historically  under-represented  groups.   Also, this work will inform the curriculum of the PI's annual
    NSF-funded REU (research experience for undergraduates) work on  the ``Science of Software''
    (in  this program, places are reserved for students from traditionally under-represented areas; e.g.  economically challenged regions of the state of North Carolina) and/or students from universities lacking advanced research facilities). While some of the concepts of this grant would be too advanced for that group, some of the simpler data mining concepts would be suitable for lectures and REU projects.
 
