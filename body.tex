@@ -2,7 +2,7 @@
 
 
 \head{1. INTRODUCTION}
-How should we theorize about SE quality?  Should we use  general models that hold over many projects? Or must we use an ever changing set of ideas that are   continually adapted to the task at hand? 
+How should we reason about SE quality?  Should we use  general models that hold over many projects? Or must we use an ever changing set of ideas that are   continually adapted to the task at hand? 
 Or does the truth lie somewhere in-between?  
 
 This is an open and important question. After a decade of intensive research into automated software analytics,
@@ -63,7 +63,7 @@ Kim et al.~\cite{Kim2016},
  say  that the aim of software analytics is to
         obtain actionable   insights
        that
-        help practitioners accomplish   software development tasks.
+        help practitioners accomplish   software development goals.
  For Tan et al.~\cite{tan2016defining}, 
         such   insights  are a core deliverable. 
         Sawyer et al. agrees, saying that  that  insights are the key driver for businesses 
@@ -101,7 +101,7 @@ find the model what works best.
 \caption{How many projects should be used for training predictors of software quality?}\label{results}
 \end{wrapfigure}
 The {\em size} of the communities found in this way
-would have a profound impact on how we should theorize about software engineering. Consider Figure~\ref{results}. 
+would have a profound impact on how we should reason about software engineering. Consider Figure~\ref{results}. 
 The \textcolor{ao(english)}{{\bf GREEN}} curve shows
 some quality predictor that gets better, the more projects it learns from. After about 500 projects, the \textcolor{ao(english)}{{\bf GREEN}} curve's growth stops and we would say that community size here was around 500 projects. In this case, while we could not offer models that cover {\em all} of SE, we could offer a handful of models, each of which would be relevant to large sets of 500   projects.
 Accordingly, we would say that (a)~there are   many cases where  wisdom from
@@ -192,11 +192,12 @@ assess   our new methods.
 They address
 issues raised by two recent surveys in the SE analytics community
 about  ``questions that matter in SE''~\cite{Begel:2014,gupta2015identifying}.
-For example, they address practitioner questions such as (a)``Are there any specific mistakes that developers make that results in hot-fixes?''; (b)~``Do number of developer working on same bugs have an effect in code quality or timeline?'';
-(c)~``Do existing bugs in code affects the future enhancement of the code base?'';
-(d)~``Is there a  correlation between the details of the requirement and accuracy of effort estimation?'';
-(e)~``Is there a relationship between the release cycle duration and code quality?''; (f)~``What kind of developer affects the productivity of developer and his/her code quality?'';
-or (g)~``How to find a best developer for a certain bug fix or enhancement depending on the developers previous activity?''.
+For example, they address practitioner questions which can be related to tasks list mentioned in Table 2 such as (a)``Are there any specific mistakes that developers make that results in hot-fixes?''[task2,task3]; (b)~``Do number of developer working on same bugs have an effect in code quality or time line?''[task1,task6];
+(c)~``Do existing bugs in code affects the future enhancement of the code base?''[task6];
+(d)~``Is there a  correlation between the details of the requirement and accuracy of effort estimation?''[task8];
+(e)~``Is there a relationship between the release cycle duration and code quality?''[task6,task8,task9]; (f)~``What kind of developer affects the productivity of developer and his/her code quality?''[task3];
+or (g)~``How to find a best developer for a certain bug fix or enhancement depending on the developers previous activity?''[task3,task9].
+%\bi
 \ei
 \begin{table}[!t]
 \begin{tabular}{|rp{5.8in}|}\hline
@@ -213,7 +214,7 @@ jiang2009adaptive, jeffrey2006test};\\
 
  \rowcolor{blue!10} {\em Task5:}& Unsupervised learning, to create quality predictor as a response to growing data volume without the need for costly labeling for effort estimation~\cite{zhong2004analyzing}, defect prediction~\cite{pedrycz2001self,yuan2000application,zhong2004unsupervised,fu2017revisiting},topic modeling~\cite{kumar1998neural} etc;\\
 
- {\em Task6:}& Defect prediction~\cite{d2012evaluating, fukushima2014empirical, li2012sample, menzies2007data, nam2013transfer, rahman2012recalling, fenton1999critique, lessmann2008benchmarking, zimmermann2009cross} one of the most sought after research topic in SE, in terms of within project~\cite{krishna2016too, krishna2017less, shatnawi2010quantitative, alves2010deriving, oliveira2014extracting} and cross project~\cite{turhan2009relative, nam2017heterogeneous, jing2015heterogeneous} defect prediction, for assessing software quality, resource planning, effort estimation etc/
+ {\em Task6:}& Defect prediction~\cite{menzies2007data, ostrand2005predicting, rahman2013and, zimmermann2008predicting,molokken2003review,d2012evaluating, fukushima2014empirical, li2012sample, menzies2007data, nam2013transfer, rahman2012recalling, fenton1999critique, lessmann2008benchmarking, zimmermann2009cross} one of the most sought after research topic in SE, in terms of within project~\cite{krishna2016too, krishna2017less, shatnawi2010quantitative, alves2010deriving, oliveira2014extracting} and cross project~\cite{turhan2009relative, nam2017heterogeneous, jing2015heterogeneous} defect prediction, for assessing software quality, resource planning, effort estimation etc/
  Wan et al.~\cite{Wan18} report from  their survey
  of 100s of industrial   practitioners,  90+\% of respondents were eager to adopt defect prediction techniques.
  \\
@@ -222,7 +223,7 @@ jiang2009adaptive, jeffrey2006test};\\
  This task is important for organizations that manage large teams managing a suite set of
  cloud-based tools for  a diverse community. In that business context, it is useful to adjust work allocations on a regular basis in anticipate expected changes to the rate of issue/bug reports.\\
 
- {\em Task8:} &Overall effort estimation ~\cite{menzies2007data, ostrand2005predicting, rahman2013and, zimmermann2008predicting,molokken2003review, shepperd1996effort, finnie1997comparison, burgess2001can, mukhopadhyay1992examining, mukhopadhyay1992examining, walkerden1999empirical, satapathy2014story, coelho2012effort};\\
+ {\em Task8:} &Overall effort estimation ~\cite{ shepperd1996effort, finnie1997comparison, burgess2001can, mukhopadhyay1992examining, mukhopadhyay1992examining, walkerden1999empirical, satapathy2014story, coelho2012effort};\\
 
  \rowcolor{blue!10}{\em Task9:} &Change planning, to understand the effect of code refactoring~\cite{fowler1999refactoring, gorg2005error, kim2011empirical, mens2004survey, ratzinger2008relation, weissgerber2006refactorings,  weissgerber2006identifying} depending on suggested changes by historical data from previous releases or from model project from same/diverse community.\\\hline
 \end{tabular}
@@ -551,7 +552,7 @@ for as long as this bellwether continues to be the best oracle for a community.
 When discussing bellwether methods with colleagues, they often ask:
 \bi
 \item
-{\em Question~1: ``Do bellwethers guarantee permanent conclusion stability?''} No- and we should not expect them to. The aim of bellwethers is to {\em slow}, but do not  {\em stop}, the pace of new ideas in software engineering. Sometimes, new ideas are essential. Software engineering is a very dynamic field with a high churn in techniques, platforms, developers and tasks. In  dynamic environments it is important to change with the times. That said, changing {\em more} than necessary is not desirable- hence, bellwethers. 
+{\em Question~1: ``Do bellwethers guarantee permanent conclusion stability?''} No- and we should not expect them to. The aim of bellwethers is to {\em slow}, but do not  {\em stop}, the pace of new ideas in software engineering. Sometimes, new ideas are essential. Software engineering is a very dynamic field with a high churn in techniques, platforms, developers and activities. In  dynamic environments it is important to change with the times. That said, changing {\em more} than necessary is not desirable- hence, bellwethers. 
 \item
 {\em Question~2: `` How to detect when bellwethers need updating?''} 
 Clearly, the conclusion stability offered by bellwethers only lasts as long as the bellwether remains useful. Hence, bellwether performance must always be monitored and, if that performance starts to dip, then seek a new bellwether. Later in this proposal, we will propose monitoring our models using {\em stream mining}. 
@@ -690,9 +691,9 @@ block us as a denial of service attack}. From those projects stored in Github, w
 of Table~\ref{tab:metrics}.
 
 
-~\textit{\textbf{ RQ3: Can we store and query that much information?}}
+\textit{\textbf{ RQ3: Can we store and query that much information?}}
 Storing and process all (say) Github's data would be a daunting
-systems-level task.  Fortunately, much of that data comes from   ``toy'' projects. The research community has adopted a sets of standard ``sanity'' checks
+systems-level activity.  Fortunately, much of that data comes from   ``toy'' projects. The research community has adopted a sets of standard ``sanity'' checks
 of  Table~\ref{tbl:sanity}   that  select the projects worth reporting~\cite{5069475,Kalliamvakou2014,Munaiah2017}.  
 Two important aspects of theses checks are that
 (a)~they can be performed using Github's API without
@@ -724,37 +725,56 @@ represent the indirect external manifestations of the internal ones.  }
 \resizebox{1\linewidth}{!}{
 \begingroup\setlength{\fboxsep}{2pt}
 \colorbox{blue!10}{%
-\small
-\begin{tabular}{r|ll}
-\textbf{CATEGORIES}  & \multicolumn{1}{c}{\textit{\textbf{Internal attributes}}} & \multicolumn{1}{c}{\textit{\textbf{External attributes}}} \\ \hline
- \textit{\textbf{Products}} & \\ 
-\multirow{2}{*}{Specifications} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}size, reuse, modularity, redundancy, \\ functionality, syntactic correctness, \dots\end{tabular}} & \multirow{2}{*}{comprehensibility, maintainability, \dots} \\
- &  &  \\
-\multirow{2}{*}{Designs} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}size, reuse, modularity, coupling, \\ cohesiveness, inheritance, functionality, \dots\end{tabular}} & \multirow{2}{*}{quality, complexity, maintainability, \dots} \\
- &  &  \\
-\multirow{2}{*}{Code} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}CK metrics, McCabe metrics, Halstead metrics,  \\ functionality, algorithmic complexity, control-flow structuredness, \dots\end{tabular}} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}reliability, usability, maintainability, \\ reusability\end{tabular}} \\
- &  &  \\
-Test Data & size, coverage level, range of change of all the above \dots & quality, reusability, \dots \\
-Etc & \dots & \dots \\  \hline
-\textit{\textbf{Processes}} &  &  \\ 
-\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Construction\\ specification\end{tabular}} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}time, effort, \#requirement changes,\dots  \end{tabular}} & \multirow{2}{*}{quality, cost, stability, \dots} \\
- &  &  \\
-\multirow{2}{*}{Detailed design} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}time, effort, number of specification faults found, \dots\end{tabular}} & \multirow{2}{*}{cost, cost-effectiveness, \dots} \\
- &  &  \\
-Testing & time, effort, number of coding faults found, \dots & cost, cost-effectiveness, stability, \dots \\
-Maintenance & \#bug reports, \#maintenance requests, \#enhancement requests,\ldots & extensibility\dots\\
-            & \#issues open, \#issues closes, \#issue close time  \dots &   maintainability \dots \\
-Etc & \dots & \dots \\   \hline
-\textit{\textbf{Resources}} &  &  \\
-%Personnel & age, price, \dots & productivity, experience, intelligence, \dots \\
-Teams & size, communication level, structuredness, \dots & productivity, quality, \dots \\
-Organizations & size, pace of personnel change %ISO Certification, CMM level 
-& Maturity, profitability, \dots \\
-Software &   size, \dots & usability, reliability, \dots \\
-%Hardware & price, speed, memory size, \dots & reliability, \dots \\
-%Office & size, temperature, light, \dots & comfort, quality, \dots \\
-Etc & \dots & \dots \\ 
-\end{tabular}}
+\begin{tabular}{l|lll}
+Categories                                                           & Internal Attributes                                                                                                                                                      & Tools                                                                                                                                                        & Tasks                                                                                                                                                                                                                                                  \\ \hline
+\textit{Products}                                                    &                                                                                                                                                                          &                                                                                                                                                              &                                                                                                                                                                                                                                                        \\
+\multirow{2}{*}{Specifications}                                      & size, reuse, modularity, redundancy,                                                                                                                                     & \multirow{5}{*}{\begin{tabular}[c]{@{}l@{}}Understand\\ Prospector\\ Testwell \\ CTC++\\ SonarQube\\ Commit Guru\\ Clever\\ User created tools\end{tabular}} & \multirow{5}{*}{\begin{tabular}[c]{@{}l@{}}Task2: Hero  alerts\\ Task3: Impact of developer skills\\ Task4: Test case prioritization\\ Task5: Unsupervised learning\\ Task8: Overall effort estimation\\ Task9: Change planning\end{tabular}}          \\
+                                                                     & functionality, syntactic correctness                                                                                                                                     &                                                                                                                                                              &                                                                                                                                                                                                                                                        \\
+Designs                                                              & \begin{tabular}[c]{@{}l@{}}size, reuse, modularity, \\ coupling, cohesiveness, \\ inheritance, functionality, . . .\end{tabular}                                         &                                                                                                                                                              &                                                                                                                                                                                                                                                        \\
+Code                                                                 & \begin{tabular}[c]{@{}l@{}}CK metrics, McCabe metrics, \\ Halstead metrics, functionality, \\ algorithmic complexity, \\ control-flow structuredness, . . .\end{tabular} &                                                                                                                                                              &                                                                                                                                                                                                                                                        \\
+Test Data                                                            & size, coverage,  . . .                                                                                                                                                   &                                                                                                                                                              &                                                                                                                                                                                                                                                        \\ \hline
+\textit{Processes}                                                   &                                                                                                                                                                          &                                                                                                                                                              &                                                                                                                                                                                                                                                        \\
+\begin{tabular}[c]{@{}l@{}}Construction\\ Specification\end{tabular} & time, effort, \#requirement changes,. . .                                                                                                                                & \multirow{4}{*}{User created tools}                                                                                                                          & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Task1: Issue close time\\ Task3: Impact  of  developer skills\\ Task5: Unsupervised learning\\ Task7: Next-month effort estimates\\ Task8: Overall effort estimation\\ Task9: Change planning\end{tabular}} \\
+Detailed design                                                      & time, effort, number of specification faults found, . . .                                                                                                                &                                                                                                                                                              &                                                                                                                                                                                                                                                        \\
+Testing                                                              & time, effort, number of coding faults found, . . .                                                                                                                       &                                                                                                                                                              &                                                                                                                                                                                                                                                        \\
+Maintenance                                                          & \begin{tabular}[c]{@{}l@{}}\#bug reports, \#maintenance requests, \\ \#enhancement requests,\#issues open, \\ \#issues closes, \#issue close time . . .\end{tabular}     &                                                                                                                                                              &                                                                                                                                                                                                                                                        \\ \hline
+\textit{Resources}                                                   &                                                                                                                                                                          &                                                                                                                                                              &                                                                                                                                                                                                                                                        \\
+Teams                                                                & size, communication level, structuredness, . . .                                                                                                                         & \multirow{3}{*}{User created tools}                                                                                                                          & \multirow{3}{*}{\begin{tabular}[c]{@{}l@{}}Task2: Hero  alerts  \\ Task3: Impact of developer skills\\ Task5: Unsupervised learning\end{tabular}}                                                                                                      \\
+Organizations                                                        & size, pace of personnel change,. . .                                                                                                                                     &                                                                                                                                                              &                                                                                                                                                                                                                                                        \\
+Software                                                             & size, . . .                                                                                                                                                              &                                                                                                                                                              &                                                                                                                                                                                                                                                       
+\end{tabular}%
+
+% \begin{tabular}{r|ll}
+% \textbf{CATEGORIES}  & \multicolumn{1}{c}{\textit{\textbf{Internal attributes}}} & \multicolumn{1}{c}{\textit{\textbf{External attributes}}} \\ \hline
+%  \textit{\textbf{Products}} & \\ 
+% \multirow{2}{*}{Specifications} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}size, reuse, modularity, redundancy, \\ functionality, syntactic correctness, \dots\end{tabular}} & \multirow{2}{*}{comprehensibility, maintainability, \dots} \\
+%  &  &  \\
+% \multirow{2}{*}{Designs} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}size, reuse, modularity, coupling, \\ cohesiveness, inheritance, functionality, \dots\end{tabular}} & \multirow{2}{*}{quality, complexity, maintainability, \dots} \\
+%  &  &  \\
+% \multirow{2}{*}{Code} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}CK metrics, McCabe metrics, Halstead metrics,  \\ functionality, algorithmic complexity, control-flow structuredness, \dots\end{tabular}} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}reliability, usability, maintainability, \\ reusability\end{tabular}} \\
+%  &  &  \\
+% Test Data & size, coverage level, range of change of all the above \dots & quality, reusability, \dots \\
+% Etc & \dots & \dots \\  \hline
+% \textit{\textbf{Processes}} &  &  \\ 
+% \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Construction\\ specification\end{tabular}} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}time, effort, \#requirement changes,\dots  \end{tabular}} & \multirow{2}{*}{quality, cost, stability, \dots} \\
+%  &  &  \\
+% \multirow{2}{*}{Detailed design} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}time, effort, number of specification faults found, \dots\end{tabular}} & \multirow{2}{*}{cost, cost-effectiveness, \dots} \\
+%  &  &  \\
+% Testing & time, effort, number of coding faults found, \dots & cost, cost-effectiveness, stability, \dots \\
+% Maintenance & \#bug reports, \#maintenance requests, \#enhancement requests,\ldots & extensibility\dots\\
+%             & \#issues open, \#issues closes, \#issue close time  \dots &   maintainability \dots \\
+% Etc & \dots & \dots \\   \hline
+% \textit{\textbf{Resources}} &  &  \\
+% %Personnel & age, price, \dots & productivity, experience, intelligence, \dots \\
+% Teams & size, communication level, structuredness, \dots & productivity, quality, \dots \\
+% Organizations & size, pace of personnel change %ISO Certification, CMM level 
+% & Maturity, profitability, \dots \\
+% Software &   size, \dots & usability, reliability, \dots \\
+% %Hardware & price, speed, memory size, \dots & reliability, \dots \\
+% %Office & size, temperature, light, \dots & comfort, quality, \dots \\
+% Etc & \dots & \dots \\ 
+% \end{tabular}
+}
 \endgroup}
 \end{table*}
 
@@ -788,6 +808,7 @@ From~\cite{5069475,Kalliamvakou2014,Munaiah2017}.}\label{tbl:sanity}
 \end{wraptable} As to what specific data we would explore, that is determined by the example software analytics tasks 
 explored by this research.  Initially, we would start with the nine tasks  of Table~\ref{tasks} (and move on to others if time permits).
 
+XXXX HARDWARE BUDGE
 
 
 \noindent\textit{\textbf{RQ4: Can we ensure data quality over so many projects?}}  There are many ways to make mistakes when learning from 10,000+ projects
@@ -796,7 +817,7 @@ explored by this research.  Initially, we would start with the nine tasks  of Ta
 \caption{A small sample of the kinds of errors novices make when processing large data dumps from Github. This list is hardly complete and researchers exploring large Github data dumps need to maintain and extend their own list of ``bad smell'' detectors showing what errors were made before, and how to avoid them in the future. }\label{tbl:ohshit}
 {\small \begin{tabular}{|p{.45\linewidth}p{.50\linewidth}|}\hline
 \rowcolor{blue!10}
-\centering \textbf{"Bad Smell"} & \multicolumn{1}{c}{\textbf{"Bad Smell" Manager}} \\ \hline
+\centering \textbf{"Bad Smell"} & \multicolumn{1}{c}{\textbf{Proposed "Bad Smell" Manager}} \\ \hline
 \rowcolor{white!10}
   \begin{itemize} 
 \item
@@ -812,7 +833,7 @@ Enforcing sanity check rules of Table~\ref{tbl:sanity} when selecting projects a
 Not noticing rows with identical values;
 \end{itemize} & \begin{itemize} 
 \item
-database de-duplicating;
+Nearest neighbor checks for data, review rows that are suspiciously similar;
 \end{itemize} \\
 
 \rowcolor{white!10}
@@ -839,7 +860,7 @@ Use of parity checker for comparing commit counts of master brunch and collected
 Incorrectly aggregating the data. Certain Github labels have different meanings to different developers. E.g. {\em high severity} can actually mean ``the thing I am most willing to fix next'';
 \end{itemize} & \begin{itemize} 
 \item
-Use of a Natural language based system to convert the labels to a set of approved generic labels;
+Use of a natural language based system to convert the labels to a set of approved generic labels;
 \end{itemize} \\
 
 \rowcolor{blue!10}
@@ -854,7 +875,7 @@ Use rollback mechanism to delete partial data when job fails and proper logging 
 \rowcolor{white!10}
 \small \begin{itemize} 
 \item
-Not separating pull requests from issues in github;
+Not separating pull requests from issues in Github;
 \end{itemize} & \begin{itemize} 
 \item
 Checking for pull request id in issues, to separate pull requests from issues;
@@ -987,14 +1008,14 @@ Hence, we could experiment with finding bellwethers using
 the fastest method within the top group (e.g. simple logistic regression).
 
 Note that finding the right way to scale this approach would require experimentation. The right scaling method
-would run quickly enough to handle the volume of data we expect~\footnote{rahul: how many vectors in total}  while
+would run quickly enough to handle the volume of data we expect  while
 not degrading the performance of the transfer learners (for learner performance measures, see RQ7, below).
 
 % {\em  RQ6: How to transfer lessons learned between projects described in different terminology?} 
 % When transferring data between many projects, there is sometimes a need for
 %  heterogeneous transfer learning~\cite{nam2017heterogeneous}; e.g.  realizing that that feature  ``X'' in project1 is effectively the same as feature ``Y'' in project2. Learning such {\em heterogenous transforms} is problematic for 10,000+ projects. To address this problem, this research will  constrain heterogeneous transfer  to just the attributes mentioned in BELLTREE's recommendations (which, as mentioned above, make use of very few features).  
 
-\textit{\textbf{ RQ7: How to tame tuning complexity?}} As software analytics gets more complex (e.g. deep learning~\cite{fu17}, spectral learning~\cite{Wang:2016,nair2017faster}), it becomes
+\textit{\textbf{ RQ7: How to mitigate tuning complexity?}} As software analytics gets more complex (e.g. deep learning~\cite{fu17}, spectral learning~\cite{Wang:2016,nair2017faster}), it becomes
 harder and slower to test many methods on many data sets.
 Worse yet, many recent results have demonstrated the value of tuning
 a learners default parameters~\cite{agrawal17,agrawal2018wrong,Tantithamthavorn18,fu2016tuning} before apply those learners to software engineering data.
@@ -1012,8 +1033,17 @@ we have had much success with faster methods for hyperparamter optimization, the
 
 
 \begin{wrapfigure}{r}{1.4in}
-    \includegraphics[width=1.4in]{figs/f1.png}  \caption{Performance improvements seen in 17 defect prediction data sets after   hyperparameter optimization.}\label{fig:tuned}
-\end{wrapfigure}Recently, the PIs of this proposal have had much success  with   ``hyperparameter optimizatiers'' that automatically determine which learner to use, and what settings to apply to those learners~\cite{fu2016tuning,chen2017riot,nair2017flash,agrawal17,fu2017revisiting,nair2017faster,mathew2017shorter,nair2017faster,chen2017beyond,nair2016accidental,fu2016tuning,agrawal2018wrong,agrawal17}.
+    \includegraphics[width=1.4in]{figs/f1.png}  \caption{Y-axis shows performance improvements seen in 17 defect prediction data sets after   hyperparameter optimization.}\label{fig:tuned}
+\end{wrapfigure}Recently, the PIs of this proposal have had much success  with   ``hyperparameter optimizatiers'' that automatically determine which learner to use, and what settings to apply to those learners~\cite{%
+fu2016tuning,%
+chen2017riot,%
+fu2017revisiting,%
+nair2017faster,%
+mathew2017shorter,%
+chen2017beyond,%
+nair2016accidental,%
+agrawal2018wrong,%
+agrawal17}.
 As seen in  Figure~\ref{fig:tuned}, this can   significantly improve learner performance. That figure shows the  improvements found by Fu and PI Menzies
 can after a hyperparameter optimizer adjusted the control
  parameters of data miners~\cite{fu2016tuning}. The x-axis of that figure shows results from 17 different data sets. The y-axis shows the delta 
@@ -1087,12 +1117,13 @@ This research will have to test if that an open issue whether or not that approa
 works for 10,000+ projects.
 Clearly, what is required is some very fast preprocessor that suggests 
 if it might be worthwhile considering transferring attributes between
-two projects $P_1,P_2$ with different data names. We have tentative ideas in that direction.
+two projects $P_1,P_2$ with different data names. We already have some innovative ideas in that direction.
 
 
 \noindent{\bf 3c.  Evaluation Questions }
 
-\textit{\textbf{ RQ9a: What Performance Scores? }}To evaluate the above, we will apply the evaluation criteria defined in papers that explored {\em Task1} to {\em Task9}. That
+
+\textit{\textbf{ RQ9a: How to Measure Performance? }}To evaluate the above, we will apply the evaluation criteria defined in papers that explored {\em Task1} to {\em Task9} of Figure~\ref{tasks}. That
 criteria is many and varied. For example:
 \bi
 \item
@@ -1117,18 +1148,19 @@ recently become a standard test in software analytics~\cite{Gh15}.
 
 After from that, there are number other important evaluation principles for this research:
 
-\textit{\textbf{RQ9b: Beyond Decision Trees?}}
+\textit{\textbf{RQ9b: Are there better ways to generate models?}} %Do we need a Better Bellwether
+% System?}}
 The above discussion assumed that models were generated by decision trees learned from bellwethers within a community. That approach has the advantage of generating succinct, easily readable models.  There are any other ways to generate such models (bayes nets~\cite{misirli2014bayesian}, 
 rule generation algorithms like RIPPER~\cite{cohen1999simple} and FFTrees~\cite{chen2018applications}; etc) and the best model generation method
 must be explored as part of this evaluation task.
 
 
-\textit{\textbf{RQ9c: Is Volume Possible?}} We need to test if our methods
+\textit{\textbf{RQ9c: Can we handle such a large  volume of data?}} We need to test if our methods
 can find, then ingest, then process data from  10,000+ projects. We would have to doubt the practicality of that scale up if:
 \bi
 \item We cannot find enough data (discussed in {\em RQ2}).
 \item The disk requirements for our data storage grew too large (discussed in {\em RQ3}); 
-\item We cannot tame the  data ingest problem and our
+\item We cannot mitigate the  data ingest problem and our
   bad smell detectors (discussed in {\em RQ4})    firing at an {\em increasing} frequency;
 \item We cannot find communities (discussed in {\em RQ5}); i.e. the performance of  models learned from  clusters
  is no different to models learned from the entire data.
@@ -1137,12 +1169,12 @@ can find, then ingest, then process data from  10,000+ projects. We would have t
 For example, standard hyper-parameter optimizers using evolutionary
 algorithms required thousands to millions of evaluations~\cite{sarro2016multi}. 
 On the other hand,
-the SMO methods described in {\em RQ7} terminate after a few dozen evaluations (which is not burdensom). That said, SMO has yet to be    tested on data from 10,000+ projects.
+the SMO methods described in {\em RQ7} terminate after a few dozen evaluations (which is not burdensome). That said, SMO has yet to be    tested on data from 10,000+ projects.
 
 \item The streaming learners  discussed in {\em RQ7} cannot recognize when
 old models need to be replaced with new models (which would be witnessed by a steady decline in performance as the reasoning continues across a long stream of data).
 \ei
-\textit{\textbf{ RQ9d: Does Volume Matter?}} i.e. does {\em more}
+\textit{\textbf{ RQ9d: Do we really need such  a large  volume of data??}} i.e. does {\em more}
 data means {\em better} predictor (where ``better'' is some domain-specific predicate discussed in our first point). To address this question, all our evaluations must be performed on 10000+ projects,
 then 5000, 2500, 1250, 600, 300, 150, 80, 40, 20, 10  projects (selected at random).
 We would reject the premise of this proposal (that it is useful to learn from 10,000+ projects)
@@ -1155,16 +1187,13 @@ it is important to apply our evaluation to both historical  {\em and } new data.
 While verification of past data is useful, the real test for our methods is how well
 it works on {\em new} data. That is, in order to demonstrate the external validity of our methods, we will watch for new releases of the projects we are studying. When such new releases occur, we will apply our current models to those new releases. This will demonstrate the value (or otherwise) of our models on new data.
  
-\textit{\textbf{ RQ9f: Do Models Matters?}} To explain this evaluation question,
-we  first must distinguish between {\em model-based methods}
-and {\em instance-based methods} for reasoning from 10,000+ projects.
+\head{4. DISCUSSION}
 
 As stated in the introduction (when we discussed Figure~\ref{results},
  the key measure to observe from this proposal is  how large are the communities found by our transfer
  learning methods. 
 Hopefully, we will find large communities with SE projects within which there are a general
  models of SE best practices that apply to many projects.
-
  But of course,    that might not happen. It is possible that we will find that our 10,000+ projects
  must be divided into hundreds of small communities, each of which having wildly different models. 
  
@@ -1182,7 +1211,7 @@ trials and literature meta analysis. Instead they prefer
 {\em instance-based methods} where every new test case results in a new query over the data~\cite{gallego2015bringing}.
 Instance-based method return treatment records from  similar patients with similar problems.
 Doctors can design treatments for the current patient by reflecting on what treatments
-did/ did not work within those records.
+did/did not work within those records.
 
 It is insightful to contrast this approach with the bellwether method discussed above.
 The bellwether methods   are a {\em model-based method} where some model
@@ -1190,7 +1219,7 @@ is generated from training data, then that model is applied to test data.
 As discussed above, the above bellwether methods produce models that are stable within a community.
 
 If we find finding thousands of tiny communities amongst our 10,000+ projects,
-then instance-based method would be most appropriate for SE data.
+then {\em instance-based methods} would be most appropriate for SE data.
  Instance-based methods, are highly  unstable since their results change whenever a new test case is processed. 
 Hopefully, this project will not endorse instance-based methods since, 
 if assessed by the criteria of  Table~\ref{tbl:why}, such instance-based  studies have many drawbacks 
@@ -1199,7 +1228,7 @@ relating to {\em generality, trust, insight, training}, and {\em tool developmen
 
 
 
-\head{4. RESEARCH PLAN}
+\head{5. RESEARCH PLAN}
 This grant will fund two graduate students (G1, G2) who will work full time on this proposal.
 Over our three year grant, these students will work as follows. 
 
@@ -1227,8 +1256,8 @@ Over our three year grant, these students will work as follows.
 \noindent
 Note that {\em Evaluation} breaks into two sections:
 \bi
-\item {\em Evaluation (on old data)} is a task that will be on-going throughout this project;
-\item But {\em Evaluation (on new data)} is a task that has to wait till the end (since we will need new data from the projects that we are monitoring)
+\item {\em Evaluation (on old data)} is an activity that will be on-going throughout this project;
+\item But {\em Evaluation (on new data)} is a activity that has to wait till the end (since we will need new data from the projects that we are monitoring)
 \ei
 Note also that the the main RQ1 of this project will be addressed at the end of the grant.
 
@@ -1246,16 +1275,20 @@ that paper. This work will continue that tradition (for more on this point, see 
 
  
 
-\head{7. RELATED WORK}
+\head{6. RELATED WORK}
 
-Need numbers of this: a quick survey. Yet  a  typical research paper in software analytics studies less than a few dozen projects (exceptions: see [?]).
+%Need numbers of this: a quick survey. Yet  a  typical research paper in software analytics studies less than a few dozen projects (exceptions: see [?]).
+
+Before we can build this large scale data miner, we need to understand and analyze the already existing similar research and repository and if they can be reused to reduce the computational cost of the project. In this section we analyzed the major large scale git project repositories that are available for public usages and we try to see if we can utilize those systems. Doing this survey reviled that each system has been built with some specific application in mind. For example -  
 
 
-\textbf{Boa}: It is large scale code repository storing almost 700.000+ projects with a support of domain specific language named boa. This repository mostly supports queries related to source code analysis, which provides only a fraction of data that we need.
+\textbf{Boa}: It is large scale code repository storing almost 700.000+ projects with a support of querying the data with domain specific language named boa. This repository mostly supports queries related to source code analysis~\cite{dyer2013boa, upadhyaya2018collective, dyer2014declarative, dyer2014mining, sherman2018structurally, xavier2017historical, diamantopoulos2016qualboa}, which provides only a fraction of data that we need.
 
-\textbf{GhTorrent}: It is a data repository from Github, created using Github API and stored in a relational database. GhTorrent stores the data in without doing any processing. So there is no relation between issues, commits, committed files. Although the datas are present in somewhat similar format, to make those inferences we would need to mine Github again, thus making it a duplicating cumbersome process to integrate data from different sources.
+\textbf{GhTorrent}: It is a data repository created from Github, using Github API and stored in a relational database. GhTorrent stores the data in without doing any processing. So there is no relation between issues, commits, committed files. Although the data are present in somewhat similar format~\cite{cabot2015exploring, izquierdo2015gila, yu2014reviewer, gousios2015work, gousios2014dataset}, to make those inferences we would need to mine Github again, thus making it a duplicating cumbersome process to integrate data from different sources.
 
-\textbf{BugSwarm}: It is a repository for reproducible software bugs and and fixes with the help of large scale software mining. This repository is focused on reproducible bugs in software repository and their fixes,which will help in research in automated patch or code change related research. These data repository doesn't help us to achieve the tasks that we want to explore as part of this research.
+\textbf{BugSwarm}: It is a repository for reproducible software bugs and and fixes with the help of large scale software mining. This repository is focused on reproducible bugs in software repository and their fixes,which will help in research in automated patch or code change~\cite{sruthi2016survey, tomassi2018bugs} related research. These data repository does not help us to achieve the goals that we want to explore as part of this research.
+
+\textbf{Commit guru}: Commit guru is a tool that helps to analyze the github repositories of projects to calculate various matrices that is required for many of software engineering research~\cite{rosen2015commit, kamei2013large, shihab2012industrial, shihab2011high} like defect prediction. Commit guru can be used in our system to find those matrices for many of the tasks described in Table 2.
 
 
 % \input{tex/antipatterns.tex}
